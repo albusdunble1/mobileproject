@@ -23,10 +23,10 @@
         <activity android:name=".FoodConfirmation" />
         <activity android:name=".ReceiverDetails" />
         <activity android:name=".ReceiverList">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <!--        jenice-->
@@ -41,7 +41,10 @@
 
 <!--        navee-->
         <activity android:name=".DonationHistoryList">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".AdminEditProfile" />
