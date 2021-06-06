@@ -29,6 +29,10 @@ public class DonationHistoryList extends AppCompatActivity {
     Donation payment;
     //TextView date;
     DatabaseReference reff =FirebaseDatabase.getInstance().getReference().child("Donation");
+//    var customers=reff.database().ref().child("Customer");
+//customers.child(uid).once('value', function(snapshot) {
+//        console.log(customerSnapshot.key, customerSnapshot.val());
+//    });
     myAdapter  myAdapter;
     ArrayList<Donation> list;
     //long maxID = 0;
@@ -49,6 +53,8 @@ public class DonationHistoryList extends AppCompatActivity {
         list = new ArrayList<>();
         myAdapter = new myAdapter(this,list);
         lvHistory.setAdapter(myAdapter);
+        setTitle("Donation History");
+
 
         reff.addValueEventListener(new ValueEventListener() {
             @Override

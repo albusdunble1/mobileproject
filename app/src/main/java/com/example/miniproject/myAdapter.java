@@ -13,8 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.Headers;
 
 import java.lang.reflect.Array;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
@@ -40,6 +43,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
         Donation payment = list.get(position);
         holder.receiver.setText(payment.getReceiver());
         holder.amount.setText(payment.getAmount().toString());
+       // Glide.with(holder.receiverImage.getContext()).load(myAdapter.getImageURL()).into(holder.receiverImage);
 //        Glide.with(holder.receiverImage.getContext()).load(payment.getImageURL()).into(holder.receiverImage);
         //holder.receiverImage.setImageBitmap(payment.getReceiverImage());
 
@@ -70,6 +74,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
             receiverImage = itemView.findViewById(R.id.imageView);
         }
     }
+
 
 
 }

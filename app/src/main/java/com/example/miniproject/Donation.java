@@ -10,6 +10,9 @@ public class Donation {
     private String PaymentStatus;
     private String PaymentDate;
     private String Receiver;
+    private Integer receiverImage;
+    private String imageURL;
+    private String receiverId;
 
     public Donation(){
     }
@@ -84,5 +87,29 @@ public class Donation {
 
     public void setReceiver(String receiver) {
         Receiver = receiver;
+    }
+
+    public Integer getReceiverImage() {
+        return receiverImage;
+    }
+
+    public void setReceiverImage(Integer receiverImage) {
+        this.receiverImage = receiverImage;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public String getReceiverId() {
+        return receiverId;
+    }
+
+    public void setReceiverId(String receiverId) {
+        this.receiverId = receiverId;
     }
 }
