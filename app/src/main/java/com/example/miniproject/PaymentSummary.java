@@ -1,0 +1,79 @@
+package com.example.miniproject;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+public class PaymentSummary extends AppCompatActivity {
+    private static final String TAG = "PaymentSummary";
+    TextView tvFood, tvPrice, tvName, tvIC, tvPhone, tvPayID, tvPayStatus, tvPayReceiver, tvPayDate;
+    String id;
+
+    protected void onCreate(Bundle savedInstanceState) {
+        // Write a message to the database
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.actvity_paysummary);
+
+        tvName = findViewById(R.id.tvName);
+        tvIC = findViewById(R.id.tvIC);
+        tvPhone = findViewById(R.id.tvPhone);
+        tvFood = findViewById(R.id.tvFood);
+        tvPrice = findViewById(R.id.tvPrice);
+        tvPayID = findViewById(R.id.tvPayID);
+        tvPayStatus = findViewById(R.id.tvPayStatus);
+        tvPayReceiver = findViewById(R.id.tvPayReceiver);
+        tvPayDate = findViewById(R.id.tvPayDate);
+
+        Bundle mainExtra = getIntent().getExtras();
+        if(mainExtra!=null){
+            id = mainExtra.getString("id");
+        }
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference().child("Donation").child(id);
+
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String name = dataSnapshot.child("name").getValue().toString();
+                String ic = dataSnapshot.child("ic").getValue().toString();
+                String food = dataSnapshot.child("food").getValue().toString();
+                String phone = dataSnapshot.child("phone").getValue().toString();
+                String amount = dataSnapshot.child("amount").getValue().toString();
+                String paymentID = dataSnapshot.child("paymentID").getValue().toString();
+                String paymentStatus = dataSnapshot.child("paymentStatus").getValue().toString();
+                String paymentDate = dataSnapshot.child("paymentDate").getValue().toString();
+                String receiver = dataSnapshot.child("receiver").getValue().toString();
+
+
+                tvName.setText(name);
+                tvIC.setText(ic);
+                tvPhone.setText(food);
+                tvFood.setText(phone);
+                tvPrice.setText("RM "+ amount);
+                tvPayReceiver.setText(receiver);
+                tvPayID.setText(paymentID);
+                tvPayStatus.setText(paymentStatus);
+                tvPayDate.setText(paymentDate);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+                Toast.makeText(PaymentSummary.this, "Database Error Fail to read value", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+}

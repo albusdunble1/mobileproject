@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FoodList">
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="600dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_label3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:text="Food List"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_rice"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/rice"
+                tools:srcCompat="@drawable/rice" />
+
+            <CheckBox
+                android:id="@+id/rice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Mixed Rice (RM 10)" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_fruit"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/fruit"
+                tools:srcCompat="@drawable/fruit" />
+
+            <CheckBox
+                android:id="@+id/fruits"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Packed Fruits (RM 3)" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_noodle"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/noodle"
+                tools:srcCompat="@drawable/noodle" />
+
+            <CheckBox
+                android:id="@+id/noodle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Noodle Soup (RM 5)" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_donatefood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Donate" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
