@@ -69,25 +69,26 @@ public class FoodConfirmation extends AppCompatActivity {
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent checkout = new Intent(FoodConfirmation.this, checkout.class);
+                Intent checkout = new Intent(FoodConfirmation.this, PaymentActivity.class);
                 if(!rice.isEmpty()){
-                    checkout.putExtra("rice", "rice");
+                    checkout.putExtra("rice", "Mixed Rice");
                 }else{
                     checkout.putExtra("rice", "");
                 }
 
                 if(!fruit.isEmpty()){
-                    checkout.putExtra("fruit", "fruit");
+                    checkout.putExtra("fruit", "Packed Fruits");
                 }else{
                     checkout.putExtra("fruit", "");
                 }
 
                 if(!noodle.isEmpty()){
-                    checkout.putExtra("noodle", "noodle");
+                    checkout.putExtra("noodle", "Noodle Soup");
                 }else{
                     checkout.putExtra("noodle", "");
                 }
 
+                checkout.putExtra("total", total);
                 checkout.putExtra("receiverid", receiverid);
                 startActivity(checkout);
             }

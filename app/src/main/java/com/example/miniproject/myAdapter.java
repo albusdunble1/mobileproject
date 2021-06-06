@@ -38,7 +38,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull myAdapter.MyViewHolder holder, int position) {
         Donation payment = list.get(position);
-        holder.receiver.setText(payment.getReceiver());
+        holder.receiver.setText(payment.getReceiverID());
         holder.amount.setText(payment.getAmount().toString());
 //        Glide.with(holder.receiverImage.getContext()).load(payment.getImageURL()).into(holder.receiverImage);
         //holder.receiverImage.setImageBitmap(payment.getReceiverImage());
@@ -46,7 +46,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, payment.getReceiver(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, payment.getReceiverID(), Toast.LENGTH_SHORT).show();
 
             }
         });
