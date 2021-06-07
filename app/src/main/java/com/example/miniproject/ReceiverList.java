@@ -33,9 +33,6 @@ public class ReceiverList extends AppCompatActivity {
 //    private Button btnTest, btnTest2;
 //    private EditText edTest;
 
-
-    private Button btnProfile, btnReceiverList, btnHistory;
-
     DatabaseReference ref;
     StorageReference mStorage;
     ReceiverData receiver;
@@ -55,9 +52,7 @@ public class ReceiverList extends AppCompatActivity {
 //        btnTest2 = findViewById(R.id.btn_test2);
 
         lvReceivers = findViewById(R.id.lv_receivers);
-        btnProfile = findViewById(R.id.btn_profile);
-        btnReceiverList = findViewById(R.id.btn_receiverlist);
-        btnHistory = findViewById(R.id.btn_history);
+
 
 
         receiver = new ReceiverData();
@@ -75,29 +70,6 @@ public class ReceiverList extends AppCompatActivity {
             }
         });
 
-        btnProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent profile = new Intent(ReceiverList.this, CustomerProfileView.class);
-                startActivity(profile);
-            }
-        });
-
-        btnReceiverList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent receiver = new Intent(ReceiverList.this, ReceiverList.class);
-                startActivity(receiver);
-            }
-        });
-
-        btnHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent history = new Intent(ReceiverList.this, DonationHistoryList.class);
-                startActivity(history);
-            }
-        });
 
 
 

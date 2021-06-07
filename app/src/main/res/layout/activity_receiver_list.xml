@@ -12,7 +12,7 @@
         android:id="@+id/tv_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0"
         android:text="Receiver List"
         android:textSize="24sp"
         tools:layout_editor_absoluteX="138dp"
@@ -24,52 +24,5 @@
         android:layout_height="518dp"
         android:layout_weight="1"
         tools:layout_editor_absoluteY="79dp" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_margin="0dp"
-        android:layout_weight="0"
-        android:background="@drawable/customborder"
-        android:orientation="horizontal"
-        android:padding="0dp">
-
-        <Button
-            android:id="@+id/btn_profile"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="2dp"
-            android:layout_weight="1"
-            android:background="@drawable/black"
-            android:text="Profile"
-            android:textColor="#000000"
-            app:backgroundTint="#FFFFFF" />
-
-        <Button
-            android:id="@+id/btn_receiverlist"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="2dp"
-            android:layout_weight="1"
-            android:background="@drawable/black"
-            android:text="Receiver List"
-            android:textColor="#000000"
-            app:backgroundTint="#FFFFFF" />
-
-        <Button
-            android:id="@+id/btn_history"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="2dp"
-            android:layout_weight="1"
-            android:background="@drawable/black"
-            android:text="Donation History"
-            android:textColor="#000000"
-            app:backgroundTint="#FFFFFF" />
-
-    </LinearLayout>
 
 </LinearLayout>
