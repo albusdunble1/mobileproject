@@ -61,7 +61,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
                 donation.setPhone(etPhone.getText().toString().trim());
                 donation.setFood(etFood.getText().toString().trim());
                 donation.setAmount(amount);
-                donation.setReceiver("ABCD Yatim"); //temporarily hardcore *needs to be changed
+                donation.setReceiverName("ABCD Yatim"); //temporarily hardcore *needs to be changed
 
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
