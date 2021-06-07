@@ -37,7 +37,6 @@ public class CustomerProfileEdit extends AppCompatActivity {
         etCustPass = findViewById(R.id.etCustPass);
         etCustPhone = findViewById(R.id.etCustPhone);
         etCustIC = findViewById(R.id.etCustIC);
-        imgViewCust = findViewById(R.id.imgViewCust);
         btnUpdateCustProfile = findViewById(R.id.btnUpdateCustProfile);
 
         Bundle mainExtra = getIntent().getExtras();
@@ -60,15 +59,12 @@ public class CustomerProfileEdit extends AppCompatActivity {
                 String password = dataSnapshot.child("password").getValue().toString();
                 String phone = dataSnapshot.child("phone").getValue().toString();
                 String username = dataSnapshot.child("username").getValue().toString();
-                String img = dataSnapshot.child("image").getValue().toString();
-
 
                 tvCustUsername2.setText(username);
                 tvCustEmail2.setText(email);
                 etCustPass.setText(password);
                 etCustPhone.setText(phone);
                 etCustIC.setText(ic);
-                Picasso.get().load(img).into(imgViewCust);
 
                 myRef.child(String.valueOf(id)).setValue(customer);
             }
