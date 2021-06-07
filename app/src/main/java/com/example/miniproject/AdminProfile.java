@@ -117,7 +117,6 @@ public class AdminProfile extends AppCompatActivity {
                 String name = snapshot.child("username").getValue().toString();
                 //String img = snapshot.child("image").getValue().toString();
                 //Glide.with(this).load(img).into(imgView);
-                setTitle(name +"'s Profile");
 
                 txtEmail1.setText(email);
                 txtic1.setText(ic);
