@@ -8,8 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,16 +26,25 @@ import com.razorpay.PaymentResultListener;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class PaymentActivity extends AppCompatActivity implements PaymentResultListener {
+    private static final String TAG = "PaymentActivity";
     Button btnPay;
     EditText etFood, etAmount, etName, etIC, etPhone;
     Donation donation;
-    long maxID;
-    long id;
+    long maxID, id;
+    String receiverID, rice, fruit, noodle;
+    int total;
+    ListView lvFood;
+    TextView tvTotal, tvReceiverName, tvReceiverPhone;
+
+    List<String> foodarr = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,25 +55,85 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
         etName = findViewById(R.id.etName);
         etIC = findViewById(R.id.etIC);
         etPhone = findViewById(R.id.etPhone);
-        etFood = findViewById(R.id.etFood);
-        etAmount = findViewById(R.id.etAmount);
+        lvFood = findViewById(R.id.lv_foodlist);
+        tvTotal = findViewById(R.id.tv_total);
+        tvReceiverName = findViewById(R.id.tvReceiverName);
+        tvReceiverPhone = findViewById(R.id.tvReceiverPhone);
+
+        String food1 = "", food2 = "";
 
         donation = new Donation();
 
-        // Write a message to the database
+        Bundle mainExtra = getIntent().getExtras();
+        if(mainExtra!=null){
+            receiverID = mainExtra.getString("receiverid");
+            rice = mainExtra.getString("rice");
+            fruit = mainExtra.getString("fruit");
+            noodle = mainExtra.getString("noodle");
+            total = mainExtra.getInt("total", 0);
+        }
+
+        if(!rice.isEmpty()){
+            foodarr.add(rice);
+            food1 = rice + ", ";
+        }
+
+        if(!fruit.isEmpty()){
+            foodarr.add(fruit);
+            food2 = fruit + ", ";
+        }
+        if(!noodle.isEmpty()){
+            foodarr.add(noodle);
+        }
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, foodarr);
+        lvFood.setAdapter(arrayAdapter);
+        tvTotal.setText("Total:     RM " + total);
+        String listfood = food1 + food2 + noodle;
+        donation.setFood(listfood);
+
+//        tvReceiverName.setText(receiverID); // test
+
+        //Receiver Database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference receiverRef = database.getReference().child("Receiver").child(receiverID);
+        // Read from the database
+        receiverRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String receiverName = dataSnapshot.child("receiverName").getValue().toString();
+                String receiverPhone = dataSnapshot.child("receiverPhone").getValue().toString();
+
+                tvReceiverName.setText(receiverName);
+                tvReceiverPhone.setText(receiverPhone);
+
+                donation.setReceiverID(receiverID);
+                donation.setReceiverName(receiverName);
+                donation.setReceiverPhone(receiverPhone);
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+                Toast.makeText(PaymentActivity.this, "Database Error Fail to read value", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Donation database
         DatabaseReference myRef = database.getReference().child("Donation");
 
         btnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Double amount = Double.parseDouble(etAmount.getText().toString().trim());
+                Double amount = Double.valueOf(total);
                 donation.setName(etName.getText().toString().trim());
                 donation.setIC(etIC.getText().toString().trim());
                 donation.setPhone(etPhone.getText().toString().trim());
-                donation.setFood(etFood.getText().toString().trim());
                 donation.setAmount(amount);
-                donation.setReceiverName("ABCD Yatim"); //temporarily hardcore *needs to be changed
 
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override

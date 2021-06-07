@@ -44,6 +44,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull myAdapter.MyViewHolder holder, int position) {
         Donation payment = list.get(position);
+
         ReceiverData myReceiverDataList = new ReceiverData();
         holder.receiver.setText(payment.getReceiverName());
         holder.amount.setText("Donation Total: RM" + payment.getAmount().toString()+ "0");
@@ -56,6 +57,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Toast.makeText(context, payment.getReceiverName(), Toast.LENGTH_SHORT).show();
                 Intent historyDetails = new Intent(v.getContext(), DonationHistoryDetails.class);
                 historyDetails.putExtra("id", payment.getReceiverId());
@@ -66,7 +68,6 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
                 historyDetails.putExtra("food", payment.getFood());
 
                 context.startActivity(historyDetails);
-
             }
         });
 
