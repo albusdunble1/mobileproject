@@ -103,6 +103,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String receiverName = dataSnapshot.child("receiverName").getValue().toString();
                 String receiverPhone = dataSnapshot.child("receiverPhone").getValue().toString();
+                String imageURL = dataSnapshot.child("imageURL").getValue().toString();
 
                 tvReceiverName.setText(receiverName);
                 tvReceiverPhone.setText(receiverPhone);
@@ -110,8 +111,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
                 donation.setReceiverID(receiverID);
                 donation.setReceiverName(receiverName);
                 donation.setReceiverPhone(receiverPhone);
-
-
+                donation.setImageURL(imageURL);
             }
 
             @Override
