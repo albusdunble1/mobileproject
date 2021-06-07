@@ -58,6 +58,7 @@ public class PaymentSummary extends AppCompatActivity {
                 String receiverPhone = dataSnapshot.child("receiverPhone").getValue().toString();
 
 
+<<<<<<< Updated upstream
                 tvName.setText(name);
                 tvIC.setText(ic);
                 tvPhone.setText(food);
@@ -68,6 +69,28 @@ public class PaymentSummary extends AppCompatActivity {
                 tvPayID.setText(paymentID);
                 tvPayStatus.setText(paymentStatus);
                 tvPayDate.setText(paymentDate);
+=======
+                tvName.
+                        setText("      Donor Name:     " + name);
+                tvIC.
+                        setText("                  IC No:     " + ic);
+                tvPhone.
+                        setText("          Phone No:     " + phone);
+                tvFood.
+                        setText("   Food Donated:   " + food);
+                tvPrice.
+                        setText("    Total Amount:     RM "+ amount);
+                tvPayReceiverName.
+                        setText(" Receiver Name:     " + receiverName);
+                tvPayReceiverPhone.
+                        setText(" Receiver Phone:    " + receiverPhone);
+                tvPayID.
+                        setText("        Payment ID:    " + paymentID);
+                tvPayStatus.
+                        setText("Payment Status:    " + paymentStatus);
+                tvPayDate.
+                        setText("   Payment Date:   " + paymentDate);
+>>>>>>> Stashed changes
             }
 
             @Override

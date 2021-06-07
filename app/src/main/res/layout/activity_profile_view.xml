@@ -9,16 +9,46 @@
         android:id="@+id/txtProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< Updated upstream
 
         android:layout_marginTop="70dp"
         android:layout_marginBottom="25dp"
         android:text="Profile Details"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/imgViewCust"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+=======
+        android:layout_marginTop="42dp"
+        android:text="Profile Details"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/labelUsername"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tvCustUsername"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="54dp"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/labelUsername"
+>>>>>>> Stashed changes
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelUsername" />
+
+    <TextView
+        android:id="@+id/labelUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="22dp"
+        android:text="Name"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/tvCustUsername"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtProfile" />
+
+<<<<<<< Updated upstream
     <ImageView
         android:id="@+id/imgViewCust"
         android:layout_width="150dp"
@@ -30,6 +60,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtProfile"
         tools:srcCompat="@tools:sample/avatars" />
+=======
+    <TextView
+        android:id="@+id/tvCustIC"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="57dp"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtic" />
+
+    <TextView
+        android:id="@+id/txtic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="21dp"
+        android:text="IC NO"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/tvCustIC"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelPhone" />
+
+    <TextView
+        android:id="@+id/tvCustEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="57dp"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/labelEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelEmail" />
+>>>>>>> Stashed changes
 
     <Button
         android:id="@+id/btnEditCustProfile"
@@ -43,6 +109,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvCustIC" />
 
     <TextView
+<<<<<<< Updated upstream
         android:id="@+id/labelEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,12 +158,53 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/tvCustUsername"
         app:layout_constraintEnd_toStartOf="@+id/tvCustUsername"
         app:layout_constraintStart_toStartOf="parent" />
+=======
+        android:id="@+id/labelPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="21dp"
+        android:text="Password"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvCustPass"
+        app:layout_constraintEnd_toStartOf="@+id/tvCustPass"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCustPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="46dp"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelPhone"
+        app:layout_constraintTop_toBottomOf="@+id/tvCustPass" />
+
+    <TextView
+        android:id="@+id/tvCustPass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="57dp"
+        android:inputType="textPassword"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelPass"
+        app:layout_constraintTop_toBottomOf="@+id/tvCustEmail" />
+>>>>>>> Stashed changes
 
     <TextView
         android:id="@+id/labelPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< Updated upstream
         android:layout_marginStart="48dp"
+=======
+        android:layout_marginStart="29dp"
+>>>>>>> Stashed changes
         android:layout_marginEnd="21dp"
         android:text="Phone No"
         android:textSize="20sp"
@@ -105,6 +213,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+<<<<<<< Updated upstream
         android:id="@+id/tvCustUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -147,6 +256,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
+=======
+        android:id="@+id/labelEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="33dp"
+>>>>>>> Stashed changes
         android:layout_marginEnd="21dp"
         android:text="IC NO"
         android:textSize="20sp"
@@ -154,8 +270,14 @@
         app:layout_constraintEnd_toStartOf="@+id/tvCustIC"
         app:layout_constraintStart_toStartOf="parent" />
 
+<<<<<<< Updated upstream
     <TextView
         android:id="@+id/tvCustPass"
+=======
+    <!--Bottom Navigation-->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+>>>>>>> Stashed changes
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="39dp"
