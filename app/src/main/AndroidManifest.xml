@@ -23,13 +23,21 @@
         <activity android:name=".DetailsReceiver" />
         <activity android:name=".ListReceiver" />
         <activity android:name=".MainReceiver"></activity>
+        <activity android:name=".checkout" />
         <activity android:name=".FoodList" >
 
         </activity>
         <activity android:name=".FoodConfirmation" />
         <activity android:name=".ReceiverDetails" />
         <activity android:name=".ReceiverList">
-
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity> <!-- jenice -->
+        <activity android:name=".PaymentActivity"></activity>
+        <activity android:name=".PaymentSummary" />
+        <activity android:name=".CustomerProfileView"></activity>
         <activity android:name=".CustomerProfileEdit" /> <!-- navee -->
         <activity android:name=".DonationHistoryList">
                         <intent-filter>
@@ -41,6 +49,10 @@
         <activity android:name=".AdminEditProfile" />
         <activity android:name=".AdminProfile">
 
+<!--             <intent-filter>-->
+<!--             <action android:name="android.intent.action.MAIN" />-->
+<!--             <category android:name="android.intent.category.LAUNCHER" />-->
+<!--             </intent-filter>-->
 
         </activity>
 
