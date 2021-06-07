@@ -71,19 +71,19 @@ public class FoodConfirmation extends AppCompatActivity {
             public void onClick(View v) {
                 Intent checkout = new Intent(FoodConfirmation.this, PaymentActivity.class);
                 if(!rice.isEmpty()){
-                    checkout.putExtra("rice", "Mixed Rice");
+                    checkout.putExtra("rice", "Mixed Rice (RM10)");
                 }else{
                     checkout.putExtra("rice", "");
                 }
 
                 if(!fruit.isEmpty()){
-                    checkout.putExtra("fruit", "Packed Fruits");
+                    checkout.putExtra("fruit", "Packed Fruits (RM 3)");
                 }else{
                     checkout.putExtra("fruit", "");
                 }
 
                 if(!noodle.isEmpty()){
-                    checkout.putExtra("noodle", "Noodle Soup");
+                    checkout.putExtra("noodle", "Noodle Soup (RM 5)");
                 }else{
                     checkout.putExtra("noodle", "");
                 }

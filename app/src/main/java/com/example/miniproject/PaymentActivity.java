@@ -75,12 +75,12 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
 
         if(!rice.isEmpty()){
             foodarr.add(rice);
-            food1 = rice + ", ";
+            food1 = " ";
         }
 
         if(!fruit.isEmpty()){
             foodarr.add(fruit);
-            food2 = fruit + ", ";
+            food2 = " ";
         }
         if(!noodle.isEmpty()){
             foodarr.add(noodle);
@@ -89,7 +89,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, foodarr);
         lvFood.setAdapter(arrayAdapter);
         tvTotal.setText("Total:     RM " + total);
-        String listfood = food1 + food2 + noodle;
+        String listfood = rice + food1 + fruit + food2 + noodle;
         donation.setFood(listfood);
 
 //        tvReceiverName.setText(receiverID); // test
