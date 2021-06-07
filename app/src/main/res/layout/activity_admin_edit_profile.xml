@@ -165,8 +165,6 @@
         app:layout_constraintStart_toEndOf="@+id/txtemail"
         app:layout_constraintTop_toBottomOf="@+id/txtusername" />
 
-    <!--Bottom Navigation for Admin -->
-
     <Button
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
@@ -177,6 +175,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtic"
         app:layout_constraintTop_toBottomOf="@+id/etIc" />
+
+
+    <!--Bottom Navigation for Admin -->
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigationAdmin"
