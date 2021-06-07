@@ -123,8 +123,8 @@ public class DonationHistoryList extends AppCompatActivity {
                  @Override
                  public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                     String img = snapshot.child("imageURL").getValue().toString();
-                     Log.d(TAG, "User test image: " + img);
+                     //String img = snapshot.child("imageURL").getValue().toString();
+                     //Log.d(TAG, "User test image: " + img);
                      //Glide.with(DonationHistoryList.this).load(img).into(imgView);
 
 
