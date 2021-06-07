@@ -121,8 +121,7 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/txtphone"
         app:layout_constraintEnd_toStartOf="@+id/etPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
 
     <EditText
         android:id="@+id/etPassword"
@@ -169,12 +168,7 @@
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="66dp"
-        android:text="Save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtic"
-        app:layout_constraintTop_toBottomOf="@+id/etIc" />
+
 
 
     <!--Bottom Navigation for Admin -->
@@ -193,5 +187,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_navigation_admin" />
+
+    <ImageView
+        android:id="@+id/btnChoose"
+        android:layout_width="41dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/etUsername"
+        app:layout_constraintEnd_toEndOf="@+id/imgView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imgView"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

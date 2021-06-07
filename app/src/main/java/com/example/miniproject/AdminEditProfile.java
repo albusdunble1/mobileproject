@@ -1,5 +1,6 @@
 package com.example.miniproject;
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -41,8 +43,8 @@ import java.util.HashMap;
 
 public class AdminEditProfile extends AppCompatActivity {
     EditText etUsername, etEmail, etPhone, etIc, etPassword;
-    Button save,choose;
-    ImageView imgView, upload;
+    Button save;
+    ImageView imgView, upload, choose;
     String id;
     DatabaseReference reff;
     Admin admin;
@@ -100,7 +102,8 @@ public class AdminEditProfile extends AppCompatActivity {
         save = findViewById(R.id.btnSave);
         imgView = findViewById(R.id.imgView);
        // upload = findViewById(R.id.imgUpload);
-       // choose = findViewById(R.id.btnChoose);
+        choose = findViewById(R.id.btnChoose);
+        setTitle("Edit Profile");
 
 
        // admin = new Admin();
@@ -110,16 +113,9 @@ public class AdminEditProfile extends AppCompatActivity {
             id = mainExtra.getString("id");
         }
         admin = new Admin();
-//        username.setText(getIntent().getStringExtra("name").toString());
-//        email.setText(getIntent().getStringExtra("email").toString());
-//        phone.setText(getIntent().getStringExtra("phone").toString());
-//        ic.setText(getIntent().getStringExtra("ic").toString());
-//        password.setText(getIntent().getStringExtra("password").toString());
-        //password.setText(getIntent().getStringExtra("password").toString());
-//        Bitmap bitmap = getIntent().getParcelableExtra("image");
-//        imgView.setImageBitmap(bitmap);
 
-        mStorageReff = FirebaseStorage.getInstance().getReference("Images");
+
+        mStorageReff = FirebaseStorage.getInstance().getReference("Admin");
         reff = FirebaseDatabase.getInstance().getReference().child("Admin").child(id);
 
         // Read from the database
@@ -175,28 +171,40 @@ public class AdminEditProfile extends AppCompatActivity {
                     map.put("email", etEmail.getText().toString());
                     map.put("password", etPassword.getText().toString());
                     map.put("ic", etIc.getText().toString());
+                    if(uploadTask != null && uploadTask.isInProgress()){
+                        Toast.makeText(AdminEditProfile.this, "Upload is in progress!", Toast.LENGTH_SHORT).show();
 
-                    reff.updateChildren(map);
-                    Toast.makeText(AdminEditProfile.this, "Data Updated!", Toast.LENGTH_SHORT).show();
-                    Intent intent2AdminProfile = new Intent(AdminEditProfile.this,AdminProfile.class);
-                    startActivity(intent2AdminProfile);
+                    }else{
+                        Fileuploader();
+                    }
+                    map.put("image", Glide.with(AdminEditProfile.this).load(uploadTask).into(imgView));
+                    if(etPhone.getText().toString().matches("") || etIc.getText().toString().matches("") ||etPassword.getText().toString().matches("")) {
+                        Toast.makeText(AdminEditProfile.this, "Please enter your information", Toast.LENGTH_SHORT).show();
+                    }else{
+
+                        reff.updateChildren(map);
+                        Toast.makeText(AdminEditProfile.this, "Data Updated!", Toast.LENGTH_SHORT).show();
+                        Intent intent2AdminProfile = new Intent(AdminEditProfile.this, AdminProfile.class);
+                        startActivity(intent2AdminProfile);
+                    }
+
                 }
 
                 catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(AdminEditProfile.this, "Data Not Updated!", Toast.LENGTH_SHORT).show();
-                    Intent intent2AdminProfile = new Intent(AdminEditProfile.this,AdminProfile.class);
-                    startActivity(intent2AdminProfile);
+                    //Toast.makeText(AdminEditProfile.this, "Data Not Updated!", Toast.LENGTH_SHORT).show();
+//                    Intent intent2AdminProfile = new Intent(AdminEditProfile.this,AdminProfile.class);
+//                    startActivity(intent2AdminProfile);
                 }
 
             }
         });
-//        choose.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FileChooser();
-//            }
-//        });
+        choose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FileChooser();
+            }
+        });
 //
 //        upload.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -252,7 +260,7 @@ public class AdminEditProfile extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), FilePathUri);
                 imgView.setImageBitmap(bitmap);
-                upload.setImageResource(0);
+                choose.setImageResource(0);
                 FilePathUri = data.getData();
 
             } catch (IOException e) {
@@ -260,6 +268,7 @@ public class AdminEditProfile extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
     }
 
     public String createImageFromBitmap(Bitmap bitmap) {
