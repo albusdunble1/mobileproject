@@ -9,6 +9,7 @@
         android:required="true" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -22,7 +23,12 @@
         <activity android:name=".AddReceiver" />
         <activity android:name=".DetailsReceiver" />
         <activity android:name=".ListReceiver" />
-        <activity android:name=".MainReceiver"></activity>
+        <activity android:name=".MainReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".checkout" />
         <activity android:name=".FoodList" >
 
@@ -30,10 +36,7 @@
         <activity android:name=".FoodConfirmation" />
         <activity android:name=".ReceiverDetails" />
         <activity android:name=".ReceiverList">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity> <!-- jenice -->
         <activity android:name=".PaymentActivity"></activity>
         <activity android:name=".PaymentSummary" />
