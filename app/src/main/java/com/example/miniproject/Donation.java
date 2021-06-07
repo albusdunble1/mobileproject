@@ -9,10 +9,10 @@ public class Donation {
     private String PaymentID;
     private String PaymentStatus;
     private String PaymentDate;
-    private String Receiver;
-    private Integer receiverImage;
+    private String ReceiverID;
+    private String ReceiverName;
+    private String ReceiverPhone;
     private String imageURL;
-    private String receiverId;
 
     public Donation(){
     }
@@ -81,20 +81,28 @@ public class Donation {
         PaymentDate = paymentDate;
     }
 
-    public String getReceiver() {
-        return Receiver;
+    public String getReceiverID() {
+        return ReceiverID;
     }
 
-    public void setReceiver(String receiver) {
-        Receiver = receiver;
+    public void setReceiverID(String receiverID) {
+        ReceiverID = receiverID;
     }
 
-    public Integer getReceiverImage() {
-        return receiverImage;
+    public String getReceiverName() {
+        return ReceiverName;
     }
 
-    public void setReceiverImage(Integer receiverImage) {
-        this.receiverImage = receiverImage;
+    public void setReceiverName(String receiverName) {
+        ReceiverName = receiverName;
+    }
+
+    public String getReceiverPhone() {
+        return ReceiverPhone;
+    }
+
+    public void setReceiverPhone(String receiverPhone) {
+        ReceiverPhone = receiverPhone;
     }
 
     public String getImageURL() {
@@ -105,11 +113,4 @@ public class Donation {
         this.imageURL = imageURL;
     }
 
-    public String getReceiverId() {
-        return receiverId;
-    }
-
-    public void setReceiverId(String receiverId) {
-        this.receiverId = receiverId;
-    }
 }
