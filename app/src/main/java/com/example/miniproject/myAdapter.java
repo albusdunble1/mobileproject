@@ -60,7 +60,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
 
                 Toast.makeText(context, payment.getReceiverName(), Toast.LENGTH_SHORT).show();
                 Intent historyDetails = new Intent(v.getContext(), DonationHistoryDetails.class);
-                historyDetails.putExtra("id", payment.getReceiverId());
+                historyDetails.putExtra("id", payment.getReceiverID());
                 historyDetails.putExtra("img", payment.getImageURL());
                 historyDetails.putExtra("name", payment.getReceiverName());
                 historyDetails.putExtra("amt", payment.getAmount().toString());
