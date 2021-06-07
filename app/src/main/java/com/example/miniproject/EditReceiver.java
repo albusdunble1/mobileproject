@@ -3,13 +3,19 @@ package com.example.miniproject;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -30,6 +36,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 
 public class EditReceiver extends AppCompatActivity {
@@ -41,7 +49,7 @@ public class EditReceiver extends AppCompatActivity {
 
     ProgressDialog progressDialog;
     ProgressBar progressBar;
-    Uri FilePathUri;
+    Uri FilePathUri = null;
     int Image_Request_Code = 7;
     StorageReference storageReference;
     DatabaseReference databaseReference;
@@ -52,6 +60,7 @@ public class EditReceiver extends AppCompatActivity {
 
     public static final int CAMERA_PERM_CODE = 101;
     public static final int CAMERA_REQUEST_CODE = 102;
+    final int PIC_CROP = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,12 +121,20 @@ public class EditReceiver extends AppCompatActivity {
         imgIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, 2);
+//                Intent intent = new Intent();
+//                intent.setType("image/*");
+//                intent.setAction(Intent.ACTION_GET_CONTENT);
+//                startActivityForResult(intent, 2);
 
 //                askCameraPermissions();
+
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                FilePathUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "pic_"+ String.valueOf(System.currentTimeMillis()) + ".jpg"));
+//                intent.putExtra(MediaStore.EXTRA_OUTPUT, FilePathUri);
+
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(intent, CAMERA_REQUEST_CODE);
+                }
             }
         });
 
@@ -135,114 +152,6 @@ public class EditReceiver extends AppCompatActivity {
         });
 
     }
-
-
-
-
-//    private void askCameraPermissions() {
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERM_CODE);
-//        } else {
-//            dispatchTakePictureIntent();
-//        }
-//
-//    }
-//
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if (requestCode == CAMERA_PERM_CODE) {
-//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                dispatchTakePictureIntent();
-//            } else {
-//                Toast.makeText(this, "Camera Permission is Required to Use camera.", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
-//
-//    private void dispatchTakePictureIntent() {
-//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        // Ensure that there's a camera activity to handle the intent
-//        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-//            // Create the File where the photo should go
-//            File photoFile = null;
-//            try {
-//                photoFile = createImageFile();
-//            } catch (IOException ex) {
-//
-//            }
-//            // Continue only if the File was successfully created
-//            if (photoFile != null) {
-//                Uri photoURI = FileProvider.getUriForFile(this,
-//                        "net.smallacademy.android.fileprovider",
-//                        photoFile);
-//                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-//                startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
-//            }
-//        }
-//    }
-//
-//    private File createImageFile() throws IOException {
-//        // Create an image file name
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//        String imageFileName = "JPEG_" + timeStamp + "_";
-////        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-//        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-//        File image = File.createTempFile(
-//                imageFileName,  /* prefix */
-//                ".jpg",         /* suffix */
-//                storageDir      /* directory */
-//        );
-//
-//        // Save a file: path for use with ACTION_VIEW intents
-//        currentPhotoPath = image.getAbsolutePath();
-//        return image;
-//    }
-//
-//    private void uploadImageToFirebase(String name, Uri contentUri) {
-//        progressDialog.setTitle("Updating receiver...");
-//        progressDialog.show();
-//
-//        final StorageReference image = storageReference.child("pictures/" + name);
-//        image.putFile(contentUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                    @Override
-//                    public void onSuccess(Uri uri) {
-////                        Log.d("tag", "onSuccess: Uploaded Image URl is " + uri.toString());
-//                        String receiverDataId = databaseReference.push().getKey();
-//                        String receiverName = etName.getText().toString().trim();
-//                        String receiverDesc = etDesc.getText().toString().trim();
-//                        String receiverPhone = etPhone.getText().toString().trim();
-//                        String receiverEmail = etEmail.getText().toString().trim();
-//                        String receiverLocation = etLocation.getText().toString().trim();
-//
-//                        ReceiverData receiverData = new ReceiverData(id, receiverName, receiverDesc, receiverPhone,
-//                                receiverEmail, receiverLocation, 0, uri.toString());
-//
-//                        databaseReference.setValue(receiverData);
-////                        progressBar.setVisibility(View.INVISIBLE);
-//                        Toast.makeText(EditReceiver.this, "Update Successfully", Toast.LENGTH_SHORT).show();
-////                        imageView.setImageResource(R.drawable.ic_baseline_add_photo_alternate_24);
-//
-//                        progressDialog.hide();
-//                    }
-//                });
-//
-//                Toast.makeText(EditReceiver.this, "Update Successfully", Toast.LENGTH_SHORT).show();
-//            }
-//        }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(EditReceiver.this, "Upload Failled.", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//    }
-
-
-
 
 
     @Override
@@ -266,25 +175,65 @@ public class EditReceiver extends AppCompatActivity {
             }
         }
 
+        if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK) {
 
-//        if (requestCode == CAMERA_REQUEST_CODE) {
-//            if (resultCode == Activity.RESULT_OK) {
-//                File f = new File(currentPhotoPath);
-//                imageView.setImageURI(Uri.fromFile(f));
-//                Log.d("tag", "ABsolute Url of Image is " + Uri.fromFile(f));
-//
-//                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-//                Uri contentUri = Uri.fromFile(f);
-//                mediaScanIntent.setData(contentUri);
-//                this.sendBroadcast(mediaScanIntent);
-//
-//                uploadImageToFirebase(f.getName(), contentUri);
-//
-//
-//            }
-//        }
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+            imageView.setImageBitmap(imageBitmap);
+//            imgIcon.setImageResource(0);
+
+            ActivityCompat.requestPermissions(EditReceiver.this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    1);
+
+            // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
+            FilePathUri = getImageUri(getApplicationContext(), imageBitmap);
+
+//            Bitmap mImageUri1 = (Bitmap) data.getExtras().get("data");
+//            imageView.setImageBitmap(mImageUri1);
 
 
+            Toast.makeText(this, "Image saved to:\n" +
+                    data.getExtras().get("data"), Toast.LENGTH_LONG).show();
+
+
+        }
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(EditReceiver.this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
     }
 
 
