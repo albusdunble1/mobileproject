@@ -1,6 +1,6 @@
 package com.example.miniproject;
 
-public class Admin {
+public class AdminData {
     private String Username;
     private String Phone;
     private String Email;
@@ -8,7 +8,7 @@ public class Admin {
     private String Ic;
     //private Integer Image;
 
-    public Admin() {
+    public AdminData() {
     }
 
     public String getPhone() {

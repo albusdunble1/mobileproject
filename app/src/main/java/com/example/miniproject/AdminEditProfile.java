@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -30,7 +29,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -43,7 +41,7 @@ public class AdminEditProfile extends AppCompatActivity {
     ImageView imgView, upload;
     String id;
     DatabaseReference reff;
-    Admin admin;
+    AdminData adminData;
     Bitmap bitmap;
     StorageReference mStorageReff;
     public Uri imguri;
@@ -66,13 +64,13 @@ public class AdminEditProfile extends AppCompatActivity {
        // choose = findViewById(R.id.btnChoose);
 
 
-       // admin = new Admin();
+       // adminData = new AdminData();
         //String id = getIntent().getStringExtra("id");
         Bundle mainExtra = getIntent().getExtras();
         if(mainExtra!=null){
             id = mainExtra.getString("id");
         }
-        admin = new Admin();
+        adminData = new AdminData();
 //        username.setText(getIntent().getStringExtra("name").toString());
 //        email.setText(getIntent().getStringExtra("email").toString());
 //        phone.setText(getIntent().getStringExtra("phone").toString());
@@ -83,7 +81,7 @@ public class AdminEditProfile extends AppCompatActivity {
 //        imgView.setImageBitmap(bitmap);
 
         mStorageReff = FirebaseStorage.getInstance().getReference("Images");
-        reff = FirebaseDatabase.getInstance().getReference().child("Admin").child(id);
+        reff = FirebaseDatabase.getInstance().getReference().child("AdminData").child(id);
 
         // Read from the database
         reff.addValueEventListener(new ValueEventListener() {
@@ -115,7 +113,7 @@ public class AdminEditProfile extends AppCompatActivity {
                 //Picasso.get().load(img).into(imgView);
                 Glide.with(AdminEditProfile.this).load(img).into(imgView);
 
-                reff.child(String.valueOf(id)).setValue(admin);
+                reff.child(String.valueOf(id)).setValue(adminData);
             }
 
             @Override
