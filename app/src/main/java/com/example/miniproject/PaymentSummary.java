@@ -60,8 +60,8 @@ public class PaymentSummary extends AppCompatActivity {
 
                 tvName.setText(name);
                 tvIC.setText(ic);
-                tvPhone.setText(food);
-                tvFood.setText(phone);
+                tvPhone.setText(phone);
+                tvFood.setText(food);
                 tvPrice.setText("RM "+ amount);
                 tvPayReceiverName.setText(receiverName);
                 tvPayReceiverPhone.setText(receiverPhone);
