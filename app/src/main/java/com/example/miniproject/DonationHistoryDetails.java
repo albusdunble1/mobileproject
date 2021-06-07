@@ -32,7 +32,7 @@ public class DonationHistoryDetails extends AppCompatActivity {
         amount = findViewById(R.id.tv_amt);
         img = findViewById(R.id.img_receiver);
 
-        Glide.with(this).load(img).into(img);
+        Glide.with(this).load(rImg).into(img);
         receiver.setText(rName);
         date.setText(rDate);
         food.setText(rFood);
