@@ -30,8 +30,11 @@ public class ReceiverList extends AppCompatActivity {
 
 
     //test
-    private Button btnTest, btnTest2;
-    private EditText edTest;
+//    private Button btnTest, btnTest2;
+//    private EditText edTest;
+
+
+    private Button btnProfile, btnReceiverList, btnHistory;
 
     DatabaseReference ref;
     StorageReference mStorage;
@@ -47,12 +50,14 @@ public class ReceiverList extends AppCompatActivity {
         setTitle("Receiver List");
 
         // test
-        edTest = findViewById(R.id.ed_test);
-        btnTest = findViewById(R.id.btn_test);
-        btnTest2 = findViewById(R.id.btn_test2);
+//        edTest = findViewById(R.id.ed_test);
+//        btnTest = findViewById(R.id.btn_test);
+//        btnTest2 = findViewById(R.id.btn_test2);
 
         lvReceivers = findViewById(R.id.lv_receivers);
-
+        btnProfile = findViewById(R.id.btn_profile);
+        btnReceiverList = findViewById(R.id.btn_receiverlist);
+        btnHistory = findViewById(R.id.btn_history);
 
 
         receiver = new ReceiverData();
@@ -70,51 +75,75 @@ public class ReceiverList extends AppCompatActivity {
             }
         });
 
-
-
-
-        btnTest2.setOnClickListener(new View.OnClickListener() {
+        btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ============== GET ONE DATA ONLY ==============
-
-//                ref = FirebaseDatabase.getInstance().getReference().child("Receiver").child("2");
-//                ref.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        String name = snapshot.child("receiverName").getValue().toString();
-//                        String phone = snapshot.child("receiverPhone").getValue().toString();
-//                        String address = snapshot.child("receiverAddress").getValue().toString();
-//
-//                        Toast.makeText(AdminProfile.this, name + " " + phone + " " + address , Toast.LENGTH_LONG).show();
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-
-
-//                ============== GET ALL DATA ==============
-//                ref = FirebaseDatabase.getInstance().getReference().child("Receiver");
-//                ref.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        for (DataSnapshot ds: snapshot.getChildren()) {
-//                            Receiver receiver = ds.getValue(Receiver.class);
-//                            System.out.println(receiver.getReceiverName());
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
+                Intent profile = new Intent(ReceiverList.this, CustomerProfileView.class);
+                startActivity(profile);
             }
         });
+
+        btnReceiverList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent receiver = new Intent(ReceiverList.this, ReceiverList.class);
+                startActivity(receiver);
+            }
+        });
+
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent history = new Intent(ReceiverList.this, DonationHistoryList.class);
+                startActivity(history);
+            }
+        });
+
+
+
+
+//        btnTest2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                ============== GET ONE DATA ONLY ==============
+//
+////                ref = FirebaseDatabase.getInstance().getReference().child("Receiver").child("2");
+////                ref.addValueEventListener(new ValueEventListener() {
+////                    @Override
+////                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+////                        String name = snapshot.child("receiverName").getValue().toString();
+////                        String phone = snapshot.child("receiverPhone").getValue().toString();
+////                        String address = snapshot.child("receiverAddress").getValue().toString();
+////
+////                        Toast.makeText(AdminProfile.this, name + " " + phone + " " + address , Toast.LENGTH_LONG).show();
+////
+////                    }
+////
+////                    @Override
+////                    public void onCancelled(@NonNull DatabaseError error) {
+////
+////                    }
+////                });
+//
+//
+////                ============== GET ALL DATA ==============
+////                ref = FirebaseDatabase.getInstance().getReference().child("Receiver");
+////                ref.addValueEventListener(new ValueEventListener() {
+////                    @Override
+////                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+////                        for (DataSnapshot ds: snapshot.getChildren()) {
+////                            Receiver receiver = ds.getValue(Receiver.class);
+////                            System.out.println(receiver.getReceiverName());
+////                        }
+////                    }
+////
+////                    @Override
+////                    public void onCancelled(@NonNull DatabaseError error) {
+////
+////                    }
+////                });
+//            }
+//        });
 
 
 //        btnTest.setOnClickListener(new View.OnClickListener() {
