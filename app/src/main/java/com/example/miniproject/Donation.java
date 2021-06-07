@@ -12,7 +12,7 @@ public class Donation {
     private String receiverName;
     private Integer receiverImage;
     private String imageURL;
-    private String receiverID;
+    private String ReceiverID;
 
     public Donation(){
     }
@@ -105,11 +105,11 @@ public class Donation {
         this.imageURL = imageURL;
     }
 
-    public String getReceiverId() {
-        return receiverID;
+    public String getReceiverID() {
+        return ReceiverID;
     }
 
-    public void setReceiverId(String receiverId) {
-        this.receiverID = receiverId;
+    public void setReceiverID(String receiverID) {
+        this.ReceiverID = receiverID;
     }
 }

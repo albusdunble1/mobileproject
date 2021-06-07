@@ -47,9 +47,9 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
         ReceiverData myReceiverDataList = new ReceiverData();
         holder.receiver.setText(payment.getReceiverName());
         holder.amount.setText("Donation Total: RM" + payment.getAmount().toString()+ "0");
-        Glide.with(holder.receiverImage.getContext()).load(myReceiverDataList.getImageURL()).into(holder.receiverImage);
+        //Glide.with(holder.receiverImage.getContext()).load(myReceiverDataList.getImageURL()).into(holder.receiverImage);
 
-       // Glide.with(holder.receiverImage.getContext()).load(myAdapter.getImageURL()).into(holder.receiverImage);
+       Glide.with(holder.receiverImage.getContext()).load(payment.getImageURL()).into(holder.receiverImage);
 //        Glide.with(holder.receiverImage.getContext()).load(payment.getImageURL()).into(holder.receiverImage);
         //holder.receiverImage.setImageBitmap(payment.getReceiverImage());
 
@@ -58,7 +58,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.MyViewHolder> {
             public void onClick(View v) {
                 Toast.makeText(context, payment.getReceiverName(), Toast.LENGTH_SHORT).show();
                 Intent historyDetails = new Intent(v.getContext(), DonationHistoryDetails.class);
-                historyDetails.putExtra("id", payment.getReceiverId());
+                historyDetails.putExtra("id", payment.getReceiverID());
                 historyDetails.putExtra("img", payment.getImageURL());
                 historyDetails.putExtra("name", payment.getReceiverName());
                 historyDetails.putExtra("amt", payment.getAmount().toString());
