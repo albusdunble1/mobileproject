@@ -100,8 +100,8 @@ public class AdminProfile extends AppCompatActivity {
         btnEdit = findViewById(R.id.btnSave);
         imgView = findViewById(R.id.imgView);
         id = String.valueOf(1);
-        mStorageReff = FirebaseStorage.getInstance().getReference("Images");
-        member = new Admin();
+        mStorageReff = FirebaseStorage.getInstance().getReference("Admin");
+        //member = new Admin();
         reff = FirebaseDatabase.getInstance().getReference().child("Admin").child(id);
 
         reff.addValueEventListener(new ValueEventListener() {
@@ -117,6 +117,7 @@ public class AdminProfile extends AppCompatActivity {
                 String name = snapshot.child("username").getValue().toString();
                 //String img = snapshot.child("image").getValue().toString();
                 //Glide.with(this).load(img).into(imgView);
+                setTitle(name + "'s Profile");
 
                 txtEmail1.setText(email);
                 txtic1.setText(ic);
@@ -144,51 +145,11 @@ public class AdminProfile extends AppCompatActivity {
                 Intent intent2edit = new Intent(AdminProfile.this, AdminEditProfile.class);
                 intent2edit.putExtra("id", (String.valueOf(id)));
 
-//                editScreenIntent.putExtra("name",txtUsername1.getText().toString());
-//                editScreenIntent.putExtra("email",txtEmail1.getText().toString());
-//                editScreenIntent.putExtra("password",txtPass1.getText().toString());
-//                editScreenIntent.putExtra("ic",txtic1.getText().toString());
-//                editScreenIntent.putExtra("phone",txtphone1.getText().toString());
-//                imgView.buildDrawingCache();
-//                Bitmap bitmap = imgView.getDrawingCache();
-//                editScreenIntent.putExtra("image", bitmap);
 
                 startActivity(intent2edit);
             }
         });
 
-
-//        view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                reff = FirebaseDatabase.getInstance().getReference().child("Member").child("5");
-//                reff.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        String name = snapshot.child("name").getValue().toString();
-//                        String phone = snapshot.child("phone").getValue().toString();
-//                        nameView.setText(name);
-//                        phoneView.setText(phone);
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-//
-//            }
-//        });
-
-//        save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                member.setName(name.getText().toString().trim());
-//                member.setPhone(phone.getText().toString().trim());
-//                reff.child(String.valueOf(maxID+1)).setValue(member);
-//                Toast.makeText(AdminProfile.this, "Data inserted successfully!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
 
     }
