@@ -1,12 +1,16 @@
 package com.example.miniproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +26,41 @@ public class PaymentSummary extends AppCompatActivity {
         // Write a message to the database
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actvity_paysummary);
+        setTitle("Donation Summary");
+
+        //Initialize and assign bottom navigation
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //Set Profile selected bottom Navigation
+        bottomNavigationView.setSelectedItemId(R.id.navreceiverlist);
+
+        //Perform ItemSelectedListener  bottom Navigation
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.navprofile:
+                        startActivity(new Intent(getApplicationContext()
+                                ,CustomerProfileView.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.navreceiverlist:
+                        startActivity(new Intent(getApplicationContext()
+                                ,ReceiverList.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.navdonationlist:
+                        startActivity(new Intent(getApplicationContext()
+                                ,DonationHistoryList.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
+        //end bottom navigation
 
         tvName = findViewById(R.id.tvName);
         tvIC = findViewById(R.id.tvIC);
