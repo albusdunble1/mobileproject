@@ -15,7 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class PaymentSummary extends AppCompatActivity {
     private static final String TAG = "PaymentSummary";
-    TextView tvFood, tvPrice, tvName, tvIC, tvPhone, tvPayID, tvPayStatus, tvPayReceiver, tvPayDate;
+    TextView tvFood, tvPrice, tvName, tvIC, tvPhone, tvPayID, tvPayStatus, tvPayReceiverName,tvPayReceiverPhone, tvPayDate;
     String id;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,8 @@ public class PaymentSummary extends AppCompatActivity {
         tvPrice = findViewById(R.id.tvPrice);
         tvPayID = findViewById(R.id.tvPayID);
         tvPayStatus = findViewById(R.id.tvPayStatus);
-        tvPayReceiver = findViewById(R.id.tvPayReceiver);
+        tvPayReceiverName = findViewById(R.id.tvPayReceiverName);
+        tvPayReceiverPhone = findViewById(R.id.tvPayReceiverPhone);
         tvPayDate = findViewById(R.id.tvPayDate);
 
         Bundle mainExtra = getIntent().getExtras();
@@ -53,15 +54,17 @@ public class PaymentSummary extends AppCompatActivity {
                 String paymentID = dataSnapshot.child("paymentID").getValue().toString();
                 String paymentStatus = dataSnapshot.child("paymentStatus").getValue().toString();
                 String paymentDate = dataSnapshot.child("paymentDate").getValue().toString();
-                String receiver = dataSnapshot.child("receiver").getValue().toString();
+                String receiverName = dataSnapshot.child("receiverName").getValue().toString();
+                String receiverPhone = dataSnapshot.child("receiverPhone").getValue().toString();
 
 
                 tvName.setText(name);
                 tvIC.setText(ic);
-                tvPhone.setText(food);
-                tvFood.setText(phone);
+                tvPhone.setText(phone);
+                tvFood.setText(food);
                 tvPrice.setText("RM "+ amount);
-                tvPayReceiver.setText(receiver);
+                tvPayReceiverName.setText(receiverName);
+                tvPayReceiverPhone.setText(receiverPhone);
                 tvPayID.setText(paymentID);
                 tvPayStatus.setText(paymentStatus);
                 tvPayDate.setText(paymentDate);

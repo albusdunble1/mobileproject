@@ -26,7 +26,7 @@ public class ReceiverDetails extends AppCompatActivity {
     StorageReference mStorage;
 
     Button btnDonate;
-    TextView tvReceiver, tvDescription, tvPhone, tvEmail;
+    TextView tvReceiver, tvDescription, tvPhone, tvEmail, tvAddress;
     ImageView imgReceiver;
 
     @Override
@@ -39,6 +39,7 @@ public class ReceiverDetails extends AppCompatActivity {
         tvDescription = findViewById(R.id.tv_description);
         tvPhone = findViewById(R.id.tv_phone);
         tvEmail = findViewById(R.id.tv_email);
+        tvAddress = findViewById(R.id.tv_address);
         imgReceiver = findViewById(R.id.img_receiver);
 
 
@@ -58,6 +59,7 @@ public class ReceiverDetails extends AppCompatActivity {
                 tvDescription.setText(receiver.getReceiverDesc());
                 tvPhone.setText(receiver.getReceiverPhone());
                 tvEmail.setText(receiver.getReceiverEmail());
+                tvAddress.setText(receiver.getReceiverLocation());
 
                 Glide.with(ReceiverDetails.this)
                         .load(receiver.getImageURL())
