@@ -3,7 +3,6 @@ package com.example.miniproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +19,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 
 public class CustomerProfileView extends AppCompatActivity {
@@ -34,16 +32,15 @@ public class CustomerProfileView extends AppCompatActivity {
         // Write a message to the database
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_view);
-
-
+        setTitle("Customer Profile");
 
         //Initialize and assign bottom navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        //Set Profile selected
+        //Set Profile selected bottom Navigation
         bottomNavigationView.setSelectedItemId(R.id.navprofile);
 
-        //Perform ItemSelectedListener
+        //Perform ItemSelectedListener  bottom Navigation
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -51,12 +48,6 @@ public class CustomerProfileView extends AppCompatActivity {
                     case R.id.navprofile:
                         startActivity(new Intent(getApplicationContext()
                                 ,CustomerProfileView.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-
-                    case R.id.navfoodlist:
-                        startActivity(new Intent(getApplicationContext()
-                                ,FoodList.class));
                         overridePendingTransition(0, 0);
                         return true;
 
@@ -71,14 +62,11 @@ public class CustomerProfileView extends AppCompatActivity {
                                 ,DonationHistoryList.class));
                         overridePendingTransition(0, 0);
                         return true;
-
-
-
-
                 }
                 return false;
             }
         });
+        //end bottom navigation
 
         tvCustUsername = findViewById(R.id.tvCustUsername);
         tvCustEmail = findViewById(R.id.tvCustEmail);

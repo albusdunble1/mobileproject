@@ -22,8 +22,12 @@
         <activity android:name=".AddReceiver" />
         <activity android:name=".DetailsReceiver" />
         <activity android:name=".ListReceiver" />
-        <activity android:name=".MainReceiver"></activity>
-        <activity android:name=".checkout" />
+        <activity android:name=".MainReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".FoodList" >
 
         </activity>
@@ -35,10 +39,7 @@
         <activity android:name=".PaymentActivity"></activity>
         <activity android:name=".PaymentSummary" />
         <activity android:name=".CustomerProfileView">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".CustomerProfileEdit" /> <!-- navee -->
         <activity android:name=".DonationHistoryList">

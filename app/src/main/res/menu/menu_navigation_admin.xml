@@ -8,9 +8,9 @@
     <item
         android:id="@+id/navreceiverlist"
         android:title="Receiver List"
-        android:icon="@drawable/ic_receiver"/>
+        android:icon="@drawable/ic_receiverlist"/>
     <item
-        android:id="@+id/navdonationlist"
-        android:title="Donation List"
-        android:icon="@drawable/ic_history"/>
+        android:id="@+id/navaddreceiver"
+        android:title="Add Receiver"
+        android:icon="@drawable/ic_addreceiver"/>
 </menu>
