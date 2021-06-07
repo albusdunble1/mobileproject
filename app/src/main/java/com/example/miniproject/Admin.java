@@ -6,7 +6,7 @@ public class Admin {
     private String Email;
     private String Password;
     private String Ic;
-    private Integer Image;
+    //private Integer Image;
 
     public Admin() {
     }
@@ -51,11 +51,11 @@ public class Admin {
         this.Ic = ic;
     }
 
-    public Integer getImage() {
-        return Image;
-    }
-
-    public void setImage(Integer image) {
-        Image = image;
-    }
+//    public Integer getImage() {
+//        return Image;
+//    }
+//
+//    public void setImage(Integer image) {
+//        Image = image;
+//    }
 }

@@ -135,7 +135,6 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
                 donation.setPhone(etPhone.getText().toString().trim());
                 donation.setAmount(amount);
 
-
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
