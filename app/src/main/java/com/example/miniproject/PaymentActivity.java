@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,6 +52,41 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+        setTitle("Payment Checkout");
+
+        //Initialize and assign bottom navigation
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //Set Profile selected bottom Navigation
+        bottomNavigationView.setSelectedItemId(R.id.navreceiverlist);
+
+        //Perform ItemSelectedListener  bottom Navigation
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.navprofile:
+                        startActivity(new Intent(getApplicationContext()
+                                ,CustomerProfileView.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.navreceiverlist:
+                        startActivity(new Intent(getApplicationContext()
+                                ,ReceiverList.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.navdonationlist:
+                        startActivity(new Intent(getApplicationContext()
+                                ,DonationHistoryList.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
+        //end bottom navigation
 
         btnPay = findViewById(R.id.btnPay);
         etName = findViewById(R.id.etName);
@@ -105,8 +142,8 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
                 String receiverPhone = dataSnapshot.child("receiverPhone").getValue().toString();
                 String imageURL = dataSnapshot.child("imageURL").getValue().toString();
 
-                tvReceiverName.setText(receiverName);
-                tvReceiverPhone.setText(receiverPhone);
+                tvReceiverName.setText("Receiver Name: " + receiverName);
+                tvReceiverPhone.setText("Receiver Phone: " + receiverPhone);
 
                 donation.setReceiverID(receiverID);
                 donation.setReceiverName(receiverName);

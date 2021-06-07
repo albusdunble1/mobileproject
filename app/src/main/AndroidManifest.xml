@@ -44,12 +44,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
         </activity>
         <activity android:name=".AdminEditProfile" />
         <activity android:name=".AdminProfile">
-
 
         </activity>
 

@@ -1,6 +1,5 @@
 package com.example.miniproject;
 
-import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -18,11 +18,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,8 +41,8 @@ import java.util.HashMap;
 
 public class AdminEditProfile extends AppCompatActivity {
     EditText etUsername, etEmail, etPhone, etIc, etPassword;
-    Button save;
-    ImageView imgView, upload, choose;
+    Button save,choose;
+    ImageView imgView, upload;
     String id;
     DatabaseReference reff;
     Admin admin;
@@ -57,6 +57,41 @@ public class AdminEditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_edit_profile);
+
+        //Initialize and assign bottom navigation Admin
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationAdmin);
+
+        //Set Profile selected bottom Navigation Admin
+        bottomNavigationView.setSelectedItemId(R.id.navreceiverlist);
+
+        //Perform ItemSelectedListener  bottom Navigation Admin
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.navprofile:
+                        startActivity(new Intent(getApplicationContext()
+                                ,AdminProfile.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.navreceiverlist:
+                        startActivity(new Intent(getApplicationContext()
+                                ,MainReceiver.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.navaddreceiver:
+                        startActivity(new Intent(getApplicationContext()
+                                ,AddReceiver.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
+        //end bottom navigation admin
+
         etUsername = findViewById(R.id.etUsername);
         etEmail = findViewById(R.id.etEmail);
         etPhone = findViewById(R.id.etPhone);
@@ -65,8 +100,7 @@ public class AdminEditProfile extends AppCompatActivity {
         save = findViewById(R.id.btnSave);
         imgView = findViewById(R.id.imgView);
        // upload = findViewById(R.id.imgUpload);
-        choose = findViewById(R.id.btnChoose);
-        setTitle("Edit Profile");
+       // choose = findViewById(R.id.btnChoose);
 
 
        // admin = new Admin();
@@ -76,9 +110,16 @@ public class AdminEditProfile extends AppCompatActivity {
             id = mainExtra.getString("id");
         }
         admin = new Admin();
+//        username.setText(getIntent().getStringExtra("name").toString());
+//        email.setText(getIntent().getStringExtra("email").toString());
+//        phone.setText(getIntent().getStringExtra("phone").toString());
+//        ic.setText(getIntent().getStringExtra("ic").toString());
+//        password.setText(getIntent().getStringExtra("password").toString());
+        //password.setText(getIntent().getStringExtra("password").toString());
+//        Bitmap bitmap = getIntent().getParcelableExtra("image");
+//        imgView.setImageBitmap(bitmap);
 
-
-        mStorageReff = FirebaseStorage.getInstance().getReference("Admin");
+        mStorageReff = FirebaseStorage.getInstance().getReference("Images");
         reff = FirebaseDatabase.getInstance().getReference().child("Admin").child(id);
 
         // Read from the database
@@ -134,40 +175,28 @@ public class AdminEditProfile extends AppCompatActivity {
                     map.put("email", etEmail.getText().toString());
                     map.put("password", etPassword.getText().toString());
                     map.put("ic", etIc.getText().toString());
-                    if(uploadTask != null && uploadTask.isInProgress()){
-                        Toast.makeText(AdminEditProfile.this, "Upload is in progress!", Toast.LENGTH_SHORT).show();
 
-                    }else{
-                        Fileuploader();
-                    }
-                    map.put("image", Glide.with(AdminEditProfile.this).load(uploadTask).into(imgView));
-                    if(etPhone.getText().toString().matches("") || etIc.getText().toString().matches("") ||etPassword.getText().toString().matches("")) {
-                        Toast.makeText(AdminEditProfile.this, "Please enter your information", Toast.LENGTH_SHORT).show();
-                    }else{
-
-                        reff.updateChildren(map);
-                        Toast.makeText(AdminEditProfile.this, "Data Updated!", Toast.LENGTH_SHORT).show();
-                        Intent intent2AdminProfile = new Intent(AdminEditProfile.this, AdminProfile.class);
-                        startActivity(intent2AdminProfile);
-                    }
-
+                    reff.updateChildren(map);
+                    Toast.makeText(AdminEditProfile.this, "Data Updated!", Toast.LENGTH_SHORT).show();
+                    Intent intent2AdminProfile = new Intent(AdminEditProfile.this,AdminProfile.class);
+                    startActivity(intent2AdminProfile);
                 }
 
                 catch (Exception e) {
                     e.printStackTrace();
-                    //Toast.makeText(AdminEditProfile.this, "Data Not Updated!", Toast.LENGTH_SHORT).show();
-//                    Intent intent2AdminProfile = new Intent(AdminEditProfile.this,AdminProfile.class);
-//                    startActivity(intent2AdminProfile);
+                    Toast.makeText(AdminEditProfile.this, "Data Not Updated!", Toast.LENGTH_SHORT).show();
+                    Intent intent2AdminProfile = new Intent(AdminEditProfile.this,AdminProfile.class);
+                    startActivity(intent2AdminProfile);
                 }
 
             }
         });
-        choose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FileChooser();
-            }
-        });
+//        choose.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FileChooser();
+//            }
+//        });
 //
 //        upload.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -223,7 +252,7 @@ public class AdminEditProfile extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), FilePathUri);
                 imgView.setImageBitmap(bitmap);
-                choose.setImageResource(0);
+                upload.setImageResource(0);
                 FilePathUri = data.getData();
 
             } catch (IOException e) {
@@ -231,7 +260,6 @@ public class AdminEditProfile extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
     }
 
     public String createImageFromBitmap(Bitmap bitmap) {
