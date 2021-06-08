@@ -1,6 +1,6 @@
 package com.example.miniproject;
 
-public class Admin {
+public class AdminData {
     private String Username;
     private String Phone;
     private String Email;
@@ -9,7 +9,7 @@ public class Admin {
     public String imageURL;
     //private Integer Image;
 
-    public Admin(String url) {
+    public AdminData(String url) {
         this.imageURL= url;
     }
 

@@ -1,25 +1,19 @@
 package com.example.miniproject;
 
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,17 +23,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
-
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 
 public class AdminProfile extends AppCompatActivity {
     //EditText name, phone;
 //TextView nameView, phoneView;
     TextView txtUsername1, txtEmail1, txtPass1, txtphone1, txtic1;
-    Button btnEdit;
+    Button btnEdit, logoutadmin;
     ImageView imgView;
     //Button save,upload,choose,view;
     StorageReference mStorageReff;
@@ -47,22 +36,32 @@ public class AdminProfile extends AppCompatActivity {
     private StorageTask uploadTask;
     DatabaseReference reff;
     String id;
-    Admin member;
+    AdminData member;
     Bitmap bitmap;
     long maxID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_admin_profile);
 
-        //Initialize and assign bottom navigation Admin
+        logoutadmin = findViewById(R.id.logoutadmin);
+
+        logoutadmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent logouta = new Intent(AdminProfile.this, admin.class);
+                startActivity(logouta);
+            }
+        });
+
+        //Initialize and assign bottom navigation AdminData
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationAdmin);
 
-        //Set Profile selected bottom Navigation Admin
+        //Set Profile selected bottom Navigation AdminData
         bottomNavigationView.setSelectedItemId(R.id.navprofile);
 
-        //Perform ItemSelectedListener  bottom Navigation Admin
+        //Perform ItemSelectedListener  bottom Navigation AdminData
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -88,7 +87,7 @@ public class AdminProfile extends AppCompatActivity {
                 return false;
             }
         });
-        //end bottom navigation admin
+        //end bottom navigation adminData
 
 //        Toast.makeText(AdminProfile.this, "Firebase connected!", Toast.LENGTH_SHORT).show();
         txtUsername1 = findViewById(R.id.txtUsername1);
@@ -101,7 +100,7 @@ public class AdminProfile extends AppCompatActivity {
         imgView = findViewById(R.id.imgView);
         id = String.valueOf(1);
         mStorageReff = FirebaseStorage.getInstance().getReference("Admin");
-        //member = new Admin();
+        //member = new AdminData();
         reff = FirebaseDatabase.getInstance().getReference().child("Admin").child(id);
 
         reff.addValueEventListener(new ValueEventListener() {

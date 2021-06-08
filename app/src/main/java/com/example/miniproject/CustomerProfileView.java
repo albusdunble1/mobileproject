@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,13 +27,15 @@ public class CustomerProfileView extends AppCompatActivity {
     TextView tvCustUsername, tvCustEmail, tvCustPass, tvCustPhone, tvCustIC;
     String id;
     ImageView imgViewCust;
-    Button btnEditCustProfile;
+    Button btnEditCustProfile, logout;
 
     protected void onCreate(Bundle savedInstanceState) {
         // Write a message to the database
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_view);
         setTitle("Customer Profile");
+
+        logout = findViewById(R.id.logout);
 
         //Initialize and assign bottom navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -123,6 +126,13 @@ public class CustomerProfileView extends AppCompatActivity {
             }
         });
 
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(CustomerProfileView.this, MainActivity.class));
+            }
+        });
 
     }
 }
