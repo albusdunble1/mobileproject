@@ -20,13 +20,26 @@
     <TextView
         android:id="@+id/tvFood"
         android:layout_width="180dp"
-        android:layout_height="0dp"
+        android:layout_height="70dp"
         android:text="-----------------"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView14"
-        app:layout_constraintStart_toStartOf="@+id/tvPrice"
-        app:layout_constraintTop_toTopOf="@+id/textView14" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView14"
+        app:layout_constraintStart_toStartOf="@+id/tvPrice" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="1dp"
+        android:text="Food:"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toTopOf="@+id/textView11"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView3"
@@ -260,22 +273,7 @@
         app:layout_constraintStart_toStartOf="@+id/tvPayReceiverPhone"
         app:layout_constraintTop_toBottomOf="@+id/tvPayReceiverPhone" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="42dp"
-        android:text="Food:"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
     <!--Bottom Navigation-->
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
@@ -289,6 +287,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_navigation" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

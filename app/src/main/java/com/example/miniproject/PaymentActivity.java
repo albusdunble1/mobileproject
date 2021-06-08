@@ -41,8 +41,8 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
     private static final String TAG = "PaymentActivity";
     Button btnPay;
     Donation donation;
-    long maxID, id;
-    String receiverID, userID, rice, fruit, noodle;
+    long maxID;
+    String receiverID, userID, rice, fruit, noodle, id;
     int total;
     ListView lvFood;
     TextView tvTotal, tvReceiverName, tvReceiverPhone, tvCustName, tvCustPhone, tvCustIC, tvCustEmail;
@@ -263,11 +263,12 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
     public void onPaymentSuccess(String razorpayPaymentID) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference().child("Donation");
+        DatabaseReference refkey = FirebaseDatabase.getInstance().getReference("Donation");
         donation.setPaymentID(razorpayPaymentID);
         donation.setPaymentStatus("Paid");
         donation.setPaymentDate(DateFormat.getDateInstance().format(Calendar.getInstance().getTime()));
 
-        id = maxID+1;
+        id = refkey.push().getKey();
         myRef.child(String.valueOf(id)).setValue(donation);
 
         Intent intent2summary = new Intent(PaymentActivity.this, PaymentSummary.class);

@@ -1,6 +1,7 @@
 package com.example.miniproject;
 
 public class Donation {
+    private String donationID;
     private String userID;
     private String Food;
     private Double Amount;
@@ -12,8 +13,15 @@ public class Donation {
     private String ReceiverPhone;
     private String imageURL;
 
-
     public Donation(){
+    }
+
+    public String getDonationID() {
+        return donationID;
+    }
+
+    public void setDonationID(String donationID) {
+        this.donationID = donationID;
     }
 
     public String getUserID() {
