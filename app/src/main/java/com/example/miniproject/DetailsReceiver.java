@@ -51,7 +51,7 @@ public class DetailsReceiver extends AppCompatActivity {
 
         editBtn = findViewById(R.id.editReceiverBtn);
         deleteBtn = findViewById(R.id.deleteReceiverBtn);
-        addBtn = findViewById(R.id.addReceiverBtn);
+//        addBtn = findViewById(R.id.addReceiverBtn);
 
 
 
@@ -72,13 +72,13 @@ public class DetailsReceiver extends AppCompatActivity {
             }
         });
 
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent addReceiver = new Intent(DetailsReceiver.this, AddReceiver.class);
-                startActivity(addReceiver);
-            }
-        });
+//        addBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent addReceiver = new Intent(DetailsReceiver.this, AddReceiver.class);
+//                startActivity(addReceiver);
+//            }
+//        });
 
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
