@@ -9,6 +9,7 @@
         android:layout_width="18dp"
         android:layout_height="163dp"
         android:layout_weight="1"
+        android:scaleType="fitXY"
         app:srcCompat="@drawable/common_google_signin_btn_icon_dark_focused" />
 
     <LinearLayout

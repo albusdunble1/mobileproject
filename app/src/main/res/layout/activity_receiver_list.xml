@@ -1,63 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".ReceiverList">
 
     <TextView
         android:id="@+id/tv_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_weight="0"
         android:text="Receiver List"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/lv_receivers"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="16dp" />
 
     <ListView
         android:id="@+id/lv_receivers"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="411dp"
+        android:layout_height="518dp"
+        android:layout_weight="1"
+        tools:layout_editor_absoluteY="79dp" />
+
+    <!-- bottom navigation customer -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/design_default_color_primary_dark"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_label" />
+        app:menu="@menu/menu_navigation" />
 
-    <EditText
-        android:id="@+id/ed_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="87dp"
-        android:layout_marginLeft="87dp"
-        android:layout_marginTop="26dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_label" />
-
-    <Button
-        android:id="@+id/btn_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:text="INSERT"
-        app:layout_constraintBaseline_toBaselineOf="@+id/ed_test"
-        app:layout_constraintStart_toEndOf="@+id/ed_test" />
-
-    <Button
-        android:id="@+id/btn_test2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="GET"
-        app:layout_constraintBottom_toBottomOf="@+id/ed_test"
-        app:layout_constraintStart_toStartOf="@+id/lv_receivers" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

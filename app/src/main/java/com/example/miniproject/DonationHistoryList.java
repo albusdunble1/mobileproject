@@ -1,7 +1,9 @@
 package com.example.miniproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -53,6 +56,40 @@ public class DonationHistoryList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donation_history_list);
 
+        //Initialize and assign bottom navigation
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //Set Profile selected bottom Navigation
+        bottomNavigationView.setSelectedItemId(R.id.navreceiverlist);
+
+        //Perform ItemSelectedListener  bottom Navigation
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.navprofile:
+                        startActivity(new Intent(getApplicationContext()
+                                ,CustomerProfileView.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.navreceiverlist:
+                        startActivity(new Intent(getApplicationContext()
+                                ,ReceiverList.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.navdonationlist:
+                        startActivity(new Intent(getApplicationContext()
+                                ,DonationHistoryList.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
+        //end bottom navigation
+
         //date = findViewById(R.id.txtDate);
         //mStorageReff = FirebaseStorage.getInstance().getReference("Images");
 
@@ -72,25 +109,25 @@ public class DonationHistoryList extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Donation payment = dataSnapshot.getValue(Donation.class);
+                    //String img = dataSnapshot.child("imageURL").getValue().toString();
+                    //Glide.with(DonationHistoryList.this).load(img).into(imgView);
                     list.add(payment);
-                    //String id = payment.getReceiverId();
-                    String id = "-MbSb8itkhLXyU-Qxpdo";
-                    Log.d(TAG, "User name: " + id);
+                    final String id = payment.getReceiverID();
+
+                    //String id2 = "-MbSb8itkhLXyU-Qxpdo";
+                    Log.d(TAG, "User id test: " + id);
 //                    payment.getReceiverImage();
 
              DatabaseReference re2 = FirebaseDatabase.getInstance().getReference().child("Receiver").child(id);
              re2.addValueEventListener(new ValueEventListener() {
                  @Override
                  public void onDataChange(@NonNull DataSnapshot snapshot) {
-                     //String test = payment.getImageURL();
-                     ReceiverData rc = snapshot.getValue(ReceiverData.class);
-                     String img = snapshot.child("imageURL").getValue().toString();
-                     //Glide.with(DonationHistoryList.this).load(img).into(imgView);
-                    // Picasso.get().load(img).into(imgView);
+
+                     //String img = snapshot.child("imageURL").getValue().toString();
+                     //Log.d(TAG, "User test image: " + img);
                      //Glide.with(DonationHistoryList.this).load(img).into(imgView);
 
 
-                     Log.d(TAG, "User test image: " + img);
 
                  }
 

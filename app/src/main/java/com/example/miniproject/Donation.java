@@ -14,6 +14,7 @@ public class Donation {
     private String ReceiverPhone;
     private String imageURL;
 
+
     public Donation(){
     }
 
@@ -112,5 +113,6 @@ public class Donation {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
+
 
 }

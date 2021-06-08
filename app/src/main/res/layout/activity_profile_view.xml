@@ -10,93 +10,114 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="18dp"
         android:text="Profile Details"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/imgViewCust"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imgViewCust"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="25dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/tvCustUsername"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtProfile"
-        tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/btnEditCustProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginBottom="54dp"
         android:text="Edit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tvCustIC"
-        app:layout_constraintTop_toBottomOf="@+id/tvCustIC" />
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="@+id/tvCustIC" />
 
     <TextView
-        android:id="@+id/labelEmail"
+        android:id="@+id/txtic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="85dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="21dp"
-        android:text="Email"
+        android:text="IC NO"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvCustEmail"
-        app:layout_constraintEnd_toStartOf="@+id/tvCustEmail"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/tvCustIC"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelPhone" />
 
     <TextView
-        android:id="@+id/tvCustIC"
+        android:id="@+id/tvCustEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="34dp"
+        android:layout_marginEnd="59dp"
         android:text=""
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnEditCustProfile"
+        app:layout_constraintBaseline_toBaselineOf="@+id/labelEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtic"
-        app:layout_constraintTop_toBottomOf="@+id/tvCustPhone" />
-
-    <TextView
-        android:id="@+id/tvCustPhone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="19dp"
-        android:text=""
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvCustIC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelPhone"
-        app:layout_constraintTop_toBottomOf="@+id/tvCustPass" />
+        app:layout_constraintStart_toEndOf="@+id/labelEmail" />
 
     <TextView
         android:id="@+id/labelUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginEnd="21dp"
-        android:text="Username"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="33dp"
+        android:text="Name"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvCustUsername"
+        app:layout_constraintBottom_toTopOf="@+id/labelEmail"
         app:layout_constraintEnd_toStartOf="@+id/tvCustUsername"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/labelEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="62dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="25dp"
+        android:text="Email"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/labelPass"
+        app:layout_constraintEnd_toStartOf="@+id/tvCustEmail"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCustPass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="59dp"
+        android:layout_marginBottom="30dp"
+        android:inputType="textPassword"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvCustPhone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelPass" />
+
+    <TextView
+        android:id="@+id/tvCustUsername"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/labelUsername"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelUsername" />
+
+    <TextView
+        android:id="@+id/tvCustPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelPhone"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/labelPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="27dp"
         android:layout_marginEnd="21dp"
         android:text="Phone No"
         android:textSize="20sp"
@@ -105,36 +126,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tvCustUsername"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="17dp"
-        android:text=""
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvCustEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelUsername"
-        app:layout_constraintTop_toBottomOf="@+id/imgViewCust" />
-
-    <TextView
-        android:id="@+id/tvCustEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="20dp"
-        android:text=""
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvCustPass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelEmail"
-        app:layout_constraintTop_toBottomOf="@+id/tvCustUsername" />
-
-    <TextView
         android:id="@+id/labelPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="47dp"
+        android:layout_marginStart="26dp"
         android:layout_marginEnd="21dp"
         android:text="Password"
         android:textSize="20sp"
@@ -143,29 +138,31 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/txtic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginEnd="21dp"
-        android:text="IC NO"
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvCustIC"
-        app:layout_constraintEnd_toStartOf="@+id/tvCustIC"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tvCustPass"
+        android:id="@+id/tvCustIC"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="39dp"
-        android:layout_marginBottom="15dp"
-        android:inputType="textPassword"
+        android:layout_marginEnd="59dp"
         android:text=""
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvCustPhone"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelPass"
-        app:layout_constraintTop_toBottomOf="@+id/tvCustEmail" />
+        app:layout_constraintStart_toEndOf="@+id/txtic" />
+
+
+    <!--Bottom Navigation-->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:itemBackground="@color/design_default_color_primary_dark"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_navigation" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,9 +6,11 @@ public class Admin {
     private String Email;
     private String Password;
     private String Ic;
+    public String imageURL;
     //private Integer Image;
 
-    public Admin() {
+    public Admin(String url) {
+        this.imageURL= url;
     }
 
     public String getPhone() {
@@ -49,6 +51,10 @@ public class Admin {
 
     public void setIc(String ic) {
         this.Ic = ic;
+    }
+
+    public String getImageURL() {
+        return imageURL;
     }
 
 //    public Integer getImage() {

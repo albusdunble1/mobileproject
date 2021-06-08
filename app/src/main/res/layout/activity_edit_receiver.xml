@@ -289,9 +289,25 @@
 
                 />
         </LinearLayout>
+        <!--Bottom Navigation for Admin -->
+        <!-- Self fix thanks scroll view constraint problem -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigationAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:itemBackground="@color/design_default_color_primary_dark"
+            app:itemIconTint="@drawable/selector"
+            app:itemTextColor="@drawable/selector"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/menu_navigation_admin" />
 
 
     </LinearLayout>
+
 
 
 </ScrollView>
