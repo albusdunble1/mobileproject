@@ -1,10 +1,12 @@
 package com.example.miniproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,6 +29,40 @@ public class DetailsReceiver extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_receiver);
+
+        //Initialize and assign bottom navigation Admin
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationAdmin);
+
+        //Set Profile selected bottom Navigation Admin
+        bottomNavigationView.setSelectedItemId(R.id.navreceiverlist);
+
+        //Perform ItemSelectedListener  bottom Navigation Admin
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.navprofile:
+                        startActivity(new Intent(getApplicationContext()
+                                ,AdminProfile.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.navreceiverlist:
+                        startActivity(new Intent(getApplicationContext()
+                                ,MainReceiver.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.navaddreceiver:
+                        startActivity(new Intent(getApplicationContext()
+                                ,AddReceiver.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                }
+                return false;
+            }
+        });
+        //end bottom navigation admin
 
         final String id = getIntent().getStringExtra("id").toString();
         final String desc = getIntent().getStringExtra("desc").toString();

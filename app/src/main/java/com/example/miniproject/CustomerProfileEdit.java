@@ -129,10 +129,14 @@ public class CustomerProfileEdit extends AppCompatActivity {
                     map.put("password", etCustPass.getText().toString());
                     map.put("ic", etCustIC.getText().toString());
 
-                    myRef.updateChildren(map);
-                    Toast.makeText(CustomerProfileEdit.this, "Data Updated!", Toast.LENGTH_SHORT).show();
-                    Intent intent2AdminProfile = new Intent(CustomerProfileEdit.this, CustomerProfileView.class);
-                    startActivity(intent2AdminProfile);
+                    if(etCustPhone.getText().toString().matches("") || etCustPass.getText().toString().matches("") || etCustIC.getText().toString().matches("")){
+                        Toast.makeText(CustomerProfileEdit.this, "Please fill in the information", Toast.LENGTH_SHORT).show();
+                    }else{
+                        myRef.updateChildren(map);
+                        Toast.makeText(CustomerProfileEdit.this, "Data Updated!", Toast.LENGTH_SHORT).show();
+                        Intent intent2AdminProfile = new Intent(CustomerProfileEdit.this, CustomerProfileView.class);
+                        startActivity(intent2AdminProfile);
+                    }
                 }
 
                 catch (Exception e) {
