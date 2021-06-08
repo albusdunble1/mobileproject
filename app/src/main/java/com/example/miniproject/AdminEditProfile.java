@@ -66,7 +66,7 @@ public class AdminEditProfile extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationAdmin);
 
         //Set Profile selected bottom Navigation AdminData
-        bottomNavigationView.setSelectedItemId(R.id.navreceiverlist);
+        bottomNavigationView.setSelectedItemId(R.id.navprofile);
 
         //Perform ItemSelectedListener  bottom Navigation AdminData
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

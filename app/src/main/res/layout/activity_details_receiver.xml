@@ -143,10 +143,10 @@
                 app:backgroundTint="#F44336" />
 
         </LinearLayout>
-        <!--Bottom Navigation-->
-        <!-- Not fix idk how to put in scroll view pls adjust yourself ;( -->
+
+        <!--Bottom Navigation for Admin-->
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
+            android:id="@+id/bottom_navigationAdmin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -157,7 +157,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/menu_navigation" />
+            app:menu="@menu/menu_navigation_admin" />
     </LinearLayout>
 
 </ScrollView>

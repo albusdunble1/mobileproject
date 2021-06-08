@@ -180,7 +180,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="2dp"
         app:itemBackground="@color/design_default_color_primary_dark"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
