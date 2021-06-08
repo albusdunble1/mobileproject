@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,8 +39,12 @@ public class DonationHistoryList extends AppCompatActivity {
     RecyclerView lvHistory;
     ImageView imgView;
     Donation payment;
+    String userID;
     //TextView date;
-    DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Donation");
+
+
+
+    //DatabaseReference reff;
 
 
 //    var customers=reff.database().ref().child("Customer");
@@ -88,6 +94,14 @@ public class DonationHistoryList extends AppCompatActivity {
                 return false;
             }
         });
+
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+        userID = currentFirebaseUser.getUid();
+        //Log.d(TAG, "donation test: " + userID);
+
+         DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Donation");
+         //reff.orderByChild("userID").equalTo(userID);
+
         //end bottom navigation
 
         //date = findViewById(R.id.txtDate);
@@ -104,7 +118,7 @@ public class DonationHistoryList extends AppCompatActivity {
         setTitle("Donation History");
 
 
-        reff.addValueEventListener(new ValueEventListener() {
+        reff.orderByChild("userID").equalTo(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
