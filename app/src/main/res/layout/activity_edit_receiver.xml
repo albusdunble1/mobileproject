@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="10dp"
             android:orientation="vertical">
 
             <ImageView
@@ -101,7 +101,7 @@
 
             <TextView
                 android:id="@+id/tvCamera"
-                android:layout_width="170dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
                 android:text="Click here to upload image from camera"

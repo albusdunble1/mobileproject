@@ -27,8 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".checkout" />
-        <activity android:name=".MainReceiver"></activity>
+<!--        <activity android:name=".checkout" />-->
         <activity android:name=".FoodList" >
         </activity>
         <activity android:name=".FoodConfirmation" />
