@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -35,7 +34,6 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -48,7 +46,7 @@ public class AdminEditProfile extends AppCompatActivity {
     ImageView imgView,choose,upload;
     String id;
     DatabaseReference reff;
-    Admin admin;
+    AdminData adminData;
     Bitmap bitmap;
     StorageReference mStorageReff;
     public Uri imguri;
@@ -56,7 +54,7 @@ public class AdminEditProfile extends AppCompatActivity {
     ProgressDialog progressDialog ;
     private StorageTask uploadTask;
     int Image_Request_Code = 7;
-    String Storage_Path = "Admin";
+    String Storage_Path = "AdminData";
     long maxID = 0;
 
     @Override
@@ -64,13 +62,13 @@ public class AdminEditProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_edit_profile);
 
-        //Initialize and assign bottom navigation Admin
+        //Initialize and assign bottom navigation AdminData
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationAdmin);
 
-        //Set Profile selected bottom Navigation Admin
+        //Set Profile selected bottom Navigation AdminData
         bottomNavigationView.setSelectedItemId(R.id.navreceiverlist);
 
-        //Perform ItemSelectedListener  bottom Navigation Admin
+        //Perform ItemSelectedListener  bottom Navigation AdminData
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -96,7 +94,7 @@ public class AdminEditProfile extends AppCompatActivity {
                 return false;
             }
         });
-        //end bottom navigation admin
+        //end bottom navigation adminData
 
         etUsername = findViewById(R.id.etUsername);
         etEmail = findViewById(R.id.etEmail);
@@ -109,13 +107,13 @@ public class AdminEditProfile extends AppCompatActivity {
         choose = findViewById(R.id.btnChoose);
 
 
-       // admin = new Admin();
+       // adminData = new AdminData();
         //String id = getIntent().getStringExtra("id");
         Bundle mainExtra = getIntent().getExtras();
         if(mainExtra!=null){
             id = mainExtra.getString("id");
         }
-        //admin = new Admin();
+        //adminData = new AdminData();
 
         mStorageReff = FirebaseStorage.getInstance().getReference("Admin");
         reff = FirebaseDatabase.getInstance().getReference().child("Admin").child(id);
@@ -144,7 +142,7 @@ public class AdminEditProfile extends AppCompatActivity {
 //
                 Glide.with(AdminEditProfile.this).load(img).into(imgView);
 
-                reff.child(String.valueOf(id)).setValue(admin);
+                reff.child(String.valueOf(id)).setValue(adminData);
             }
 
             @Override
@@ -237,7 +235,7 @@ public class AdminEditProfile extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Image Uploaded Successfully ", Toast.LENGTH_LONG).show();
 
 //                            @SuppressWarnings("VisibleForTests")
-                            //Admin imageUploadInfo = new Admin(taskSnapshot.getStorage().getDownloadUrl().toString());
+                            //AdminData imageUploadInfo = new AdminData(taskSnapshot.getStorage().getDownloadUrl().toString());
 
                             Task<Uri> downloadUri = taskSnapshot.getStorage().getDownloadUrl();
 
@@ -246,7 +244,7 @@ public class AdminEditProfile extends AppCompatActivity {
                                 String generatedFilePath = downloadUri.getResult().toString();
 
                                 @SuppressWarnings("VisibleForTests")
-                                Admin imageUploadInfo = new Admin(generatedFilePath);
+                                AdminData imageUploadInfo = new AdminData(generatedFilePath);
 //
 //                                // Getting image upload ID.
                                 String ImageUploadId = reff.push().getKey();

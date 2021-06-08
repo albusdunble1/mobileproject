@@ -22,12 +22,10 @@
         <activity android:name=".DetailsReceiver" />
         <activity android:name=".ListReceiver" />
         <activity android:name=".MainReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 <!--        <activity android:name=".checkout" />-->
+
         <activity android:name=".FoodList" >
         </activity>
         <activity android:name=".FoodConfirmation" />
@@ -42,18 +40,26 @@
         </activity>
         <activity android:name=".CustomerProfileEdit" /> <!-- navee -->
         <activity android:name=".DonationHistoryList">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".AdminEditProfile" />
         <activity android:name=".AdminProfile">
+
+        </activity>
+
+        <!-- eyra -->
+        <activity android:name=".admin"/>
+        <activity android:name=".ForgotPassword"/>
+        <activity android:name=".RegisterUser">
+
+        </activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <meta-data
             android:name="preloaded_fonts"

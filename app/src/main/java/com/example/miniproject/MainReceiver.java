@@ -29,13 +29,13 @@ public class MainReceiver extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_receiver);
 
-        //Initialize and assign bottom navigation Admin
+        //Initialize and assign bottom navigation AdminData
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationAdmin);
 
-        //Set Profile selected bottom Navigation Admin
+        //Set Profile selected bottom Navigation AdminData
         bottomNavigationView.setSelectedItemId(R.id.navreceiverlist);
 
-        //Perform ItemSelectedListener  bottom Navigation Admin
+        //Perform ItemSelectedListener  bottom Navigation AdminData
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -61,7 +61,7 @@ public class MainReceiver extends AppCompatActivity {
                 return false;
             }
         });
-        //end bottom navigation admin
+        //end bottom navigation adminData
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
