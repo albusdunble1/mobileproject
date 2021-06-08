@@ -54,7 +54,7 @@ public class AdminEditProfile extends AppCompatActivity {
     ProgressDialog progressDialog ;
     private StorageTask uploadTask;
     int Image_Request_Code = 7;
-    String Storage_Path = "AdminData";
+    String Storage_Path = "Admin";
     long maxID = 0;
 
     @Override
@@ -195,23 +195,27 @@ public class AdminEditProfile extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (FilePathUri != null) {
+                    // Calling method to upload selected image on Firebase storage.
+                    UploadImageFileToFirebaseStorage();
 
-                // Calling method to upload selected image on Firebase storage.
-                UploadImageFileToFirebaseStorage(FilePathUri);
+                } else {
+                    Toast.makeText(AdminEditProfile.this, "Please Select New Image", Toast.LENGTH_SHORT).show();
 
+                }
             }
         });
 
     }
 
     // Creating UploadImageFileToFirebaseStorage method to upload image on storage.
-    public void UploadImageFileToFirebaseStorage(Uri FilePathUri) {
+    public void UploadImageFileToFirebaseStorage() {
 
         // Checking whether FilePathUri Is empty or not.
         if (FilePathUri != null) {
 
             // Setting progressDialog Title.
-           // progressDialog.setTitle("Image is Uploading...");
+            //progressDialog.setTitle("Image is Uploading...");
 
             // Showing progressDialog.
             //progressDialog.show();
@@ -224,36 +228,48 @@ public class AdminEditProfile extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            storageReference2nd.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>(){
+                                public void onSuccess(Uri uri) {
+                                   // AdminData imageUploadInfo = new AdminData(uri.toString());
+                                    reff.child("image").setValue(uri.toString());
+                                    Toast.makeText(getApplicationContext(), "Image Uploaded Successfully ", Toast.LENGTH_SHORT).show();
+                                }
+                                                                                      }
 
-                            // Getting image name from EditText and store into string variable.
-                            //String TempImageName = "test";
+                            );
+                           // if(taskSnapshot.getMetadata().getReference() !=null) {
 
-                            // Hiding the progressDialog after done uploading.
-                            //progressDialog.dismiss();
 
-                            // Showing toast message after done uploading.
-                            Toast.makeText(getApplicationContext(), "Image Uploaded Successfully ", Toast.LENGTH_LONG).show();
+                                // Getting image name from EditText and store into string variable.
+                                //String TempImageName = "test";
+
+                                // Hiding the progressDialog after done uploading.
+                                //progressDialog.dismiss();
+
+                                // Showing toast message after done uploading.
+//                                Toast.makeText(getApplicationContext(), "Image Uploaded Successfully ", Toast.LENGTH_SHORT).show();
 
 //                            @SuppressWarnings("VisibleForTests")
-                            //AdminData imageUploadInfo = new AdminData(taskSnapshot.getStorage().getDownloadUrl().toString());
+                                //AdminData imageUploadInfo = new AdminData(taskSnapshot.getStorage().getDownloadUrl().toString());
 
-                            Task<Uri> downloadUri = taskSnapshot.getStorage().getDownloadUrl();
-
-                            if (downloadUri.isSuccessful()) {
-                                Toast.makeText(getApplicationContext(),"Succes token", Toast.LENGTH_LONG).show();
-                                String generatedFilePath = downloadUri.getResult().toString();
-
-                                @SuppressWarnings("VisibleForTests")
-                                AdminData imageUploadInfo = new AdminData(generatedFilePath);
+//                                Task<Uri> downloadUri = taskSnapshot.getStorage().getDownloadUrl();
 //
-//                                // Getting image upload ID.
-                                String ImageUploadId = reff.push().getKey();
-
-                                // Adding image upload id s child element into databaseReference.
-
-                                reff.child("image").setValue(imageUploadInfo);
-                                //System.out.println("## Stored path is "+generatedFilePath);
-                            }
+//                                if (downloadUri.isSuccessful()) {
+//                                    Toast.makeText(getApplicationContext(), "Succes token", Toast.LENGTH_LONG).show();
+//                                    String generatedFilePath = downloadUri.getResult().toString();
+//
+//                                    @SuppressWarnings("VisibleForTests")
+//                                    AdminData imageUploadInfo = new AdminData(generatedFilePath);
+////
+////                                // Getting image upload ID.
+//                                     String test = reff.push().getKey();
+//
+//                                    // Adding image upload id s child element into databaseReference.
+//
+//                                    reff.setValue(imageUploadInfo);
+                                    //System.out.println("## Stored path is "+generatedFilePath);
+//                                }
+                            //}
                         }
                     })
                     // If something goes wrong .

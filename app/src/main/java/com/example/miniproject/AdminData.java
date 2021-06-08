@@ -6,11 +6,11 @@ public class AdminData {
     private String Email;
     private String Password;
     private String Ic;
-    public String imageURL;
+    public String image;
     //private Integer Image;
 
-    public AdminData(String url) {
-        this.imageURL= url;
+    public AdminData(String image) {
+        this.image= image;
     }
 
     public String getPhone() {
@@ -53,9 +53,10 @@ public class AdminData {
         this.Ic = ic;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImage() {
+        return image;
     }
+
 
 //    public Integer getImage() {
 //        return Image;
