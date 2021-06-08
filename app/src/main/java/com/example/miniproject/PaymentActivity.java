@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,13 +40,12 @@ import java.util.TimerTask;
 public class PaymentActivity extends AppCompatActivity implements PaymentResultListener {
     private static final String TAG = "PaymentActivity";
     Button btnPay;
-    EditText etFood, etAmount, etName, etIC, etPhone;
     Donation donation;
     long maxID, id;
-    String receiverID, rice, fruit, noodle;
+    String receiverID, userID, rice, fruit, noodle;
     int total;
     ListView lvFood;
-    TextView tvTotal, tvReceiverName, tvReceiverPhone;
+    TextView tvTotal, tvReceiverName, tvReceiverPhone, tvCustName, tvCustPhone, tvCustIC, tvCustEmail;
 
     List<String> foodarr = new ArrayList<>();
 
@@ -89,13 +90,14 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
         //end bottom navigation
 
         btnPay = findViewById(R.id.btnPay);
-        etName = findViewById(R.id.etName);
-        etIC = findViewById(R.id.etIC);
-        etPhone = findViewById(R.id.etPhone);
         lvFood = findViewById(R.id.lv_foodlist);
         tvTotal = findViewById(R.id.tv_total);
         tvReceiverName = findViewById(R.id.tvReceiverName);
         tvReceiverPhone = findViewById(R.id.tvReceiverPhone);
+        tvCustName = findViewById(R.id.tvCustName);
+        tvCustPhone = findViewById(R.id.tvCustPhone);
+        tvCustIC = findViewById(R.id.tvCustIC);
+        tvCustEmail = findViewById(R.id.tvCustEmail);
 
         String food1 = "", food2 = "";
 
@@ -129,10 +131,40 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
         String listfood = rice + food1 + fruit + food2 + noodle;
         donation.setFood(listfood);
 
-//        tvReceiverName.setText(receiverID); // test
+        //get current user authentication
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+        userID = currentFirebaseUser.getUid();
+
+        //get user data in real time database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference userRef = database.getReference().child("Users").child(userID);
+
+        // Read from the database
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String email = dataSnapshot.child("email").getValue().toString();
+                String ic = dataSnapshot.child("ic").getValue().toString();
+                String phone = dataSnapshot.child("phone").getValue().toString();
+                String fullName = dataSnapshot.child("fullName").getValue().toString();
+
+                tvCustEmail.setText(email);
+                tvCustName.setText(fullName);
+                tvCustPhone.setText(phone);
+                tvCustIC.setText(ic);
+
+                donation.setUserID(userID);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+                Toast.makeText(PaymentActivity.this, "Database Error Fail to read value", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //Receiver Database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference receiverRef = database.getReference().child("Receiver").child(receiverID);
         // Read from the database
         receiverRef.addValueEventListener(new ValueEventListener() {
@@ -159,7 +191,6 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
             }
         });
 
-
         //Donation database
         DatabaseReference myRef = database.getReference().child("Donation");
 
@@ -167,9 +198,6 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
             @Override
             public void onClick(View v) {
                 Double amount = Double.valueOf(total);
-                donation.setName(etName.getText().toString().trim());
-                donation.setIC(etIC.getText().toString().trim());
-                donation.setPhone(etPhone.getText().toString().trim());
                 donation.setAmount(amount);
 
                 myRef.addValueEventListener(new ValueEventListener() {
@@ -217,9 +245,9 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
             options.put("amount", amount);
             JSONObject preFill = new JSONObject();
             //email
-            preFill.put("email", "jenicehoe@gmail.com");
+            preFill.put("email", tvCustEmail.getText().toString());
             //contact
-            preFill.put("contact", "0123456789");
+            preFill.put("contact", tvCustPhone.getText().toString());
 
             options.put("prefill", preFill);
 

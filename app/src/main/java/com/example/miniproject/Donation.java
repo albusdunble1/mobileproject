@@ -1,9 +1,7 @@
 package com.example.miniproject;
 
 public class Donation {
-    private String Name;
-    private String Phone;
-    private String IC;
+    private String userID;
     private String Food;
     private Double Amount;
     private String PaymentID;
@@ -18,28 +16,12 @@ public class Donation {
     public Donation(){
     }
 
-    public String getName() {
-        return Name;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public String getPhone() {
-        return Phone;
-    }
-
-    public void setPhone(String phone) {
-        Phone = phone;
-    }
-
-    public String getIC() {
-        return IC;
-    }
-
-    public void setIC(String IC) {
-        this.IC = IC;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getFood() {

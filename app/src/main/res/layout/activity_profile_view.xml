@@ -9,10 +9,10 @@
         android:id="@+id/txtProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="34dp"
         android:text="Profile Details"
-        android:textSize="30sp"
+        android:textColor="#000000"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,156 +21,121 @@
         android:id="@+id/btnEditCustProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="82dp"
+        android:background="#157BCC"
+        app:backgroundTint="#FF157BCC"
         android:text="Edit"
         app:layout_constraintBaseline_toBaselineOf="@+id/logout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/logout" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="54dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginBottom="56dp"
         android:background="#FF0000"
         android:text="logout"
         app:backgroundTint="#FF0000"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintEnd_toStartOf="@+id/btnEditCustProfile"
-        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/txtic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="21dp"
-        android:text="IC NO"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/tvCustIC"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelPhone" />
-
-    <TextView
-        android:id="@+id/tvCustEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="59dp"
-        android:text=""
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/labelEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelEmail" />
 
     <TextView
         android:id="@+id/labelUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="34dp"
-        android:text="Name"
+        android:layout_marginStart="80dp"
+        android:text="Name: "
+        android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/labelEmail"
-        app:layout_constraintEnd_toStartOf="@+id/tvCustUsername"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvCustUsername"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/labelEmail"
+        android:id="@+id/tvCustEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="62dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginBottom="26dp"
-        android:text="Email"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="34dp"
+        android:text="User Email"
+        android:textColor="#424242"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/labelPass"
-        app:layout_constraintEnd_toStartOf="@+id/tvCustEmail"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tvCustPass"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="59dp"
-        android:layout_marginBottom="30dp"
-        android:inputType="textPassword"
-        android:text=""
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvCustPhone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelPass" />
+        app:layout_constraintStart_toEndOf="@+id/labelEmail"
+        app:layout_constraintTop_toBottomOf="@+id/tvCustUsername" />
 
     <TextView
         android:id="@+id/tvCustUsername"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="56dp"
-        android:text=""
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:text="User Full Name"
+        android:textColor="#424242"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/labelUsername"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelUsername" />
+        app:layout_constraintStart_toEndOf="@+id/labelUsername"
+        app:layout_constraintTop_toBottomOf="@+id/txtProfile" />
 
     <TextView
         android:id="@+id/tvCustPhone"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="49dp"
-        android:text=""
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="36dp"
+        android:text="User Phone Number"
+        android:textColor="#424242"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelPhone"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCustEmail" />
 
     <TextView
         android:id="@+id/labelPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginEnd="21dp"
-        android:text="Phone No"
+        android:layout_marginStart="46dp"
+        android:text="Phone No: "
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvCustPhone"
-        app:layout_constraintEnd_toStartOf="@+id/tvCustPhone"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/labelPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginEnd="21dp"
-        android:text="Password"
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tvCustPass"
-        app:layout_constraintEnd_toStartOf="@+id/tvCustPass"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvCustIC"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="59dp"
-        android:text=""
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="44dp"
+        android:text="User IC Number"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtic" />
+        android:textColor="#424242"
+        app:layout_constraintStart_toEndOf="@+id/txtic"
+        app:layout_constraintTop_toBottomOf="@+id/tvCustPhone" />
 
+    <TextView
+        android:id="@+id/txtic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IC No: "
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvCustIC"
+        app:layout_constraintEnd_toEndOf="@+id/labelPhone" />
+
+    <TextView
+        android:id="@+id/labelEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email: "
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvCustEmail"
+        app:layout_constraintEnd_toEndOf="@+id/labelUsername" />
 
     <!--Bottom Navigation-->
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="1dp"
         app:itemBackground="@color/design_default_color_primary_dark"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
@@ -179,6 +144,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_navigation" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

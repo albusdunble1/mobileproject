@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,8 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class PaymentSummary extends AppCompatActivity {
     private static final String TAG = "PaymentSummary";
-    TextView tvFood, tvPrice, tvName, tvIC, tvPhone, tvPayID, tvPayStatus, tvPayReceiverName,tvPayReceiverPhone, tvPayDate;
-    String id;
+    TextView tvFood, tvPrice, tvName, tvIC, tvPhone, tvEmail, tvPayID, tvPayStatus, tvPayReceiverName,tvPayReceiverPhone, tvPayDate;
+    String id, userID;
 
     protected void onCreate(Bundle savedInstanceState) {
         // Write a message to the database
@@ -64,7 +66,8 @@ public class PaymentSummary extends AppCompatActivity {
 
         tvName = findViewById(R.id.tvName);
         tvIC = findViewById(R.id.tvIC);
-        tvPhone = findViewById(R.id.tvPhone);
+        tvPhone = findViewById(R.id.tvPhone2);
+        tvEmail = findViewById(R.id.tvEmail);
         tvFood = findViewById(R.id.tvFood);
         tvPrice = findViewById(R.id.tvPrice);
         tvPayID = findViewById(R.id.tvPayID);
@@ -85,10 +88,11 @@ public class PaymentSummary extends AppCompatActivity {
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String name = dataSnapshot.child("name").getValue().toString();
-                String ic = dataSnapshot.child("ic").getValue().toString();
+//                String name = dataSnapshot.child("name").getValue().toString();
+//                String ic = dataSnapshot.child("ic").getValue().toString();
+//                String phone = dataSnapshot.child("phone").getValue().toString();
+
                 String food = dataSnapshot.child("food").getValue().toString();
-                String phone = dataSnapshot.child("phone").getValue().toString();
                 String amount = dataSnapshot.child("amount").getValue().toString();
                 String paymentID = dataSnapshot.child("paymentID").getValue().toString();
                 String paymentStatus = dataSnapshot.child("paymentStatus").getValue().toString();
@@ -96,10 +100,6 @@ public class PaymentSummary extends AppCompatActivity {
                 String receiverName = dataSnapshot.child("receiverName").getValue().toString();
                 String receiverPhone = dataSnapshot.child("receiverPhone").getValue().toString();
 
-
-                tvName.setText(name);
-                tvIC.setText(ic);
-                tvPhone.setText(phone);
                 tvFood.setText(food);
                 tvPrice.setText("RM "+ amount);
                 tvPayReceiverName.setText(receiverName);
@@ -107,6 +107,36 @@ public class PaymentSummary extends AppCompatActivity {
                 tvPayID.setText(paymentID);
                 tvPayStatus.setText(paymentStatus);
                 tvPayDate.setText(paymentDate);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+                Toast.makeText(PaymentSummary.this, "Database Error Fail to read value", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //get current user authentication
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+        userID = currentFirebaseUser.getUid();
+
+        //get user data in real time database
+        DatabaseReference userRef = database.getReference().child("Users").child(userID);
+
+        // Read from the database
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String email = dataSnapshot.child("email").getValue().toString();
+                String ic = dataSnapshot.child("ic").getValue().toString();
+                String phone = dataSnapshot.child("phone").getValue().toString();
+                String fullName = dataSnapshot.child("fullName").getValue().toString();
+
+                tvName.setText(fullName);
+                tvIC.setText(ic);
+                tvPhone.setText(phone);
+                tvEmail.setText(email);
             }
 
             @Override

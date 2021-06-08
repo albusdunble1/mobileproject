@@ -9,144 +9,139 @@
         android:id="@+id/etCustIC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtic"
-        app:layout_constraintStart_toStartOf="@+id/etCustPhone" />
-
-    <TextView
-        android:id="@+id/tvCustUsername2"
-        android:layout_width="0dp"
-        android:layout_height="26dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="34dp"
-        android:text=""
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvCustEmail2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelUsername" />
-
-    <TextView
-        android:id="@+id/tvCustEmail2"
-        android:layout_width="0dp"
-        android:layout_height="26dp"
-        android:layout_marginEnd="49dp"
-        android:text=""
-        android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/labelEmail"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelEmail" />
-
-    <TextView
-        android:id="@+id/labelEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="79dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="21dp"
-        android:text="Email"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/etCustPass"
-        app:layout_constraintEnd_toStartOf="@+id/tvCustEmail2"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/etCustPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="21dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/etCustPhone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelPass" />
-
-    <EditText
-        android:id="@+id/etCustPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="247dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelPhone" />
+        android:textColor="#424242"
+        app:layout_constraintStart_toStartOf="@+id/etCustPhone"
+        app:layout_constraintTop_toBottomOf="@+id/etCustPhone" />
 
     <TextView
         android:id="@+id/labelPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="Phone No"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="7dp"
+        android:text="Phone No: "
+        android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/etCustPhone"
+        app:layout_constraintBottom_toBottomOf="@+id/etCustPhone"
         app:layout_constraintEnd_toStartOf="@+id/etCustPhone"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/labelPass"
+        android:id="@+id/txtic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="18dp"
-        android:text="Password"
+        android:layout_marginEnd="2dp"
+        android:text="IC No: "
+        android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/etCustPass"
-        app:layout_constraintEnd_toStartOf="@+id/etCustPass"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/etCustIC"
+        app:layout_constraintEnd_toEndOf="@+id/labelPhone" />
+
+    <EditText
+        android:id="@+id/etCustPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="241dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="#424242"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelPhone"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCustEmail2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="21dp"
+        android:text="User Email"
+        android:textColor="#424242"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/etCustPhone"
+        app:layout_constraintStart_toStartOf="@+id/etCustPhone" />
+
+    <TextView
+        android:id="@+id/tvCustUsername2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="34dp"
+        android:text="User Full Name"
+        android:textColor="#424242"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvCustEmail2"
+        app:layout_constraintStart_toEndOf="@+id/labelUsername" />
+
+    <TextView
+        android:id="@+id/labelEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="Email: "
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvCustEmail2"
+        app:layout_constraintEnd_toStartOf="@+id/tvCustEmail2" />
 
     <TextView
         android:id="@+id/labelUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="37dp"
-        android:layout_marginEnd="18dp"
-        android:text="Username"
+        android:text="Name: "
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvCustUsername2"
-        app:layout_constraintEnd_toStartOf="@+id/tvCustUsername2"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/labelEmail" />
+
+    <Button
+        android:id="@+id/btnUpdatePass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="131dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="130dp"
+        android:background="#FF5722"
+        android:text="Change \nPassword"
+        app:backgroundTint="#FF5722"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnUpdateCustProfile"
+        app:layout_constraintTop_toBottomOf="@+id/etCustPhone" />
+
 
     <Button
         android:id="@+id/btnUpdateCustProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="40dp"
-        android:text="Update"
-        app:layout_constraintStart_toStartOf="@+id/etCustIC"
-        app:layout_constraintTop_toBottomOf="@+id/etCustIC" />
-
-    <TextView
-        android:id="@+id/txtic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="15dp"
-        android:text="IC NO"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/etCustIC"
-        app:layout_constraintTop_toBottomOf="@+id/etCustPhone" />
+        android:layout_marginEnd="76dp"
+        android:background="#FF009688"
+        android:text="Update \nProfile"
+        app:backgroundTint="#FF009688"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnUpdatePass"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/txtProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:text="Profile Details"
-        android:textSize="30sp"
+        android:layout_marginTop="34dp"
+        android:text="Edit Profile Details"
+        android:textColor="#000000"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--Bottom Navigation-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         app:itemBackground="@color/design_default_color_primary_dark"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
