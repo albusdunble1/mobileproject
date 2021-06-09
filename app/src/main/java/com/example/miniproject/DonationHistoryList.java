@@ -66,7 +66,7 @@ public class DonationHistoryList extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //Set Profile selected bottom Navigation
-        bottomNavigationView.setSelectedItemId(R.id.navreceiverlist);
+        bottomNavigationView.setSelectedItemId(R.id.navdonationlist);
 
         //Perform ItemSelectedListener  bottom Navigation
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
