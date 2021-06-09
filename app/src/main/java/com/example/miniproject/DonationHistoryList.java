@@ -121,16 +121,17 @@ public class DonationHistoryList extends AppCompatActivity {
         reff.orderByChild("userID").equalTo(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Donation payment = dataSnapshot.getValue(Donation.class);
+                    Donation donation = dataSnapshot.getValue(Donation.class);
                     //String img = dataSnapshot.child("imageURL").getValue().toString();
                     //Glide.with(DonationHistoryList.this).load(img).into(imgView);
-                    list.add(payment);
-                    final String id = payment.getReceiverID();
+                    list.add(donation);
+                    final String id = donation.getReceiverID();
 
                     //String id2 = "-MbSb8itkhLXyU-Qxpdo";
                     Log.d(TAG, "User id test: " + id);
-//                    payment.getReceiverImage();
+//                    donation.getReceiverImage();
 
              DatabaseReference re2 = FirebaseDatabase.getInstance().getReference().child("Receiver").child(id);
              re2.addValueEventListener(new ValueEventListener() {
@@ -155,7 +156,13 @@ public class DonationHistoryList extends AppCompatActivity {
                     Log.d(TAG, "User name: " + id);
                 }
                 myAdapter.notifyDataSetChanged();
-            }
+
+            }else{
+                    Toast.makeText(getApplicationContext(), "No donation has been made ", Toast.LENGTH_LONG).show();
+
+                }
+
+                }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
