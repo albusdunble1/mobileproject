@@ -161,22 +161,33 @@ public class CustomerProfileEdit extends AppCompatActivity {
                 passwordResetDialog.setMessage("Enter New Password >= 6 Characters long.");
                 passwordResetDialog.setView(updatePass);
 
+
+
                 passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // extract the email and send reset link
+                        // update password
                         String newPassword = updatePass.getText().toString();
-                        authUser.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(CustomerProfileEdit.this, "Password Reset Successfully.", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(CustomerProfileEdit.this, "Password Reset Failed.", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+
+                        if(updatePass.getText().toString().matches("")){
+                            Toast.makeText(CustomerProfileEdit.this, "Password is Empty, No changes", Toast.LENGTH_SHORT).show();
+                        }else if (updatePass.getText().toString().length()<6){
+                            Toast.makeText(CustomerProfileEdit.this, "Password should be more than 6, No changes", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            authUser.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(CustomerProfileEdit.this, "Password Update Successfully.", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(CustomerProfileEdit.this, "Password Update Failed.", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+
                     }
                 });
 
